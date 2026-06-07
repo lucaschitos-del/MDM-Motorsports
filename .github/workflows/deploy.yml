@@ -1,39 +1,33 @@
-name: Deploy to GitHub Pages
+name: Deploy Site
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
-
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
+      - name: Deploy to Surge
+        run: |
+          npm install -g surge 2>/dev/null
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'
+          EMAIL="mdm-lucaschitos@outlook.com"
+          PASS="MDMMotorsports2026"
+          DOMAIN="lucaschitos-mdm.surge.sh"
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          TOKEN=$(curl -sf "https://surge.sh/token?email=${EMAIL}&password=${PASS}" | python3 -c "import sys,json; print(json.load(sys.stdin)['token'])" 2>/dev/null)
+
+          if [ -z "$TOKEN" ]; then
+            echo "ERROR: Could not get surge token"
+            exit 1
+          fi
+
+          SURGE_LOGIN="$EMAIL" SURGE_TOKEN="$TOKEN" surge . "$DOMAIN"
+          echo ""
+          echo "=============================="
+          echo "LIVE URL: https://$DOMAIN"
+          echo "=============================="
