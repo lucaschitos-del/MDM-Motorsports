@@ -53,6 +53,8 @@
 <div id="root"></div>
 <script type="text/babel">
 
+// ─── SHARED ──────────────────────────────────────────────────────────────────
+
 const MDM_T = {
   black:'#0B0B10', surfaceDark:'#14141E', surfaceMid:'#1E1E2E', surfaceLight:'#28283C',
   red:'#E8001C', redDark:'#B8001A', redLight:'#FF1A33',
@@ -112,6 +114,8 @@ function countUp(el, target, suffix='') {
   };
   requestAnimationFrame(frame);
 }
+
+// ─── HEADER ──────────────────────────────────────────────────────────────────
 
 function Header({ activeSection }) {
   const [scrolled, setScrolled] = React.useState(false);
@@ -173,6 +177,8 @@ function Header({ activeSection }) {
     </header>
   );
 }
+
+// ─── HERO ────────────────────────────────────────────────────────────────────
 
 function initSpeedLines(canvas) {
   const ctx = canvas.getContext('2d');
@@ -249,6 +255,8 @@ function HeroSection() {
   );
 }
 
+// ─── PRODUCTS ────────────────────────────────────────────────────────────────
+
 const PRODUCTS = [
   {n:'01',name:'Suspension Geometry',spec:'7075-T6 Aluminium · 5-Axis CNC',desc:'Wishbones, uprights, pushrods and tie-rods. Every geometry point verified against your chassis data sheet.',tag:'SUSPENSION'},
   {n:'02',name:'Drivetrain Components',spec:'Forged · CNC Finished · Ti Hardware',desc:'Output flanges, driveshafts and differential carriers — designed for peak torque without excess mass.',tag:'DRIVETRAIN'},
@@ -316,6 +324,8 @@ function ProductsSection() {
   );
 }
 
+// ─── ENGINEERING ─────────────────────────────────────────────────────────────
+
 const CAPS = [
   {n:'01',label:'5-Axis CNC Machining',spec:'±0.001 mm',desc:'Multi-axis precision machining of aluminium, titanium, Inconel and exotic alloys. 48-hour rapid prototype available.'},
   {n:'02',label:'CMM Verification',spec:'ISO 9001',desc:'Every critical dimension verified on our coordinate measuring machine before dispatch. Full inspection report with each batch.'},
@@ -366,6 +376,8 @@ function EngineeringSection() {
     </section>
   );
 }
+
+// ─── ABOUT ───────────────────────────────────────────────────────────────────
 
 const DIFFERENTIATORS = [
   {title:'Custom From Brief',body:'We work from your drawing, sketch, or written spec. No catalogue — every component is engineered to your chassis, series rules, and performance target.',accent:MDM_T.red},
@@ -425,6 +437,8 @@ function AboutSection() {
     </section>
   );
 }
+
+// ─── CONTACT ─────────────────────────────────────────────────────────────────
 
 const CATEGORIES = ['Suspension Geometry','Drivetrain Components','Braking Systems','Aerodynamic Parts','Powertrain Accessories','One-Off Engineering'];
 
@@ -491,6 +505,8 @@ function ContactSection() {
   );
 }
 
+// ─── FOOTER ──────────────────────────────────────────────────────────────────
+
 function FooterSection() {
   const go=(id)=>{const el=document.getElementById(id);if(el)window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-64,behavior:'smooth'});};
   const cols=[
@@ -514,7 +530,7 @@ function FooterSection() {
             <div key={col.heading}>
               <div style={{fontFamily:"'Inter',sans-serif",fontSize:9,fontWeight:600,color:MDM_T.muted,letterSpacing:'0.16em',textTransform:'uppercase',marginBottom:16}}>{col.heading}</div>
               <div style={{display:'flex',flexDirection:'column',gap:10}}>
-                {col.links.map(l=><div key={l} style={{fontFamily:"'Inter',sans-serif",fontSize:12,fontWeight:300,color:'rgba(255,255,255,0.28)',lineHeight:1.5,cursor:'pointer',transition:'color 150ms'}} onMouseEnter={e=>{e.currentTarget.style.color=MDM_T.platinum;}} onMouseLeave={e=>{e.currentTarget.style.color='rgba(255,255,255,0.28)';}}}>{l}</div>)}
+                {col.links.map(l=><div key={l} style={{fontFamily:"'Inter',sans-serif",fontSize:12,fontWeight:300,color:'rgba(255,255,255,0.28)',lineHeight:1.5,cursor:'pointer',transition:'color 150ms'}} onMouseEnter={e=>{e.currentTarget.style.color=MDM_T.platinum;}} onMouseLeave={e=>{e.currentTarget.style.color='rgba(255,255,255,0.28)';}}>{l}</div>)}
               </div>
             </div>
           ))}
@@ -522,13 +538,15 @@ function FooterSection() {
         <div style={{borderTop:'1px solid rgba(255,255,255,0.06)',paddingTop:20,display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:12}}>
           <div style={{fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:300,color:'rgba(255,255,255,0.18)'}}>© 2026 MDM Motorsports Ltd. All rights reserved.</div>
           <div style={{display:'flex',gap:24,flexWrap:'wrap'}}>
-            {['Privacy Policy','Terms of Service','Quality Policy'].map(l=><div key={l} style={{fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:300,color:'rgba(255,255,255,0.18)',cursor:'pointer',transition:'color 150ms'}} onMouseEnter={e=>{e.currentTarget.style.color=MDM_T.muted;}} onMouseLeave={e=>{e.currentTarget.style.color='rgba(255,255,255,0.18)';}}}>{l}</div>)}
+            {['Privacy Policy','Terms of Service','Quality Policy'].map(l=><div key={l} style={{fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:300,color:'rgba(255,255,255,0.18)',cursor:'pointer',transition:'color 150ms'}} onMouseEnter={e=>{e.currentTarget.style.color=MDM_T.muted;}} onMouseLeave={e=>{e.currentTarget.style.color='rgba(255,255,255,0.18)';}}>{l}</div>)}
           </div>
         </div>
       </div>
     </footer>
   );
 }
+
+// ─── APP ─────────────────────────────────────────────────────────────────────
 
 function App() {
   const [activeSection, setActiveSection] = React.useState('hero');
