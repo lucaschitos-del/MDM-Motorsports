@@ -4,45 +4,106 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MDM Motorsports — Precision Parts Engineering</title>
-  <meta name="description" content="Custom-engineered components for competitive motorsport. From CAD brief to race-ready part — at tolerances measured in microns.">
+  <meta name="description" content="Custom-engineered components for competitive motorsport.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { background: #0B0B10; color: #fff; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    #root { min-height: 100vh; }
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: #0B0B10; }
-    ::-webkit-scrollbar-thumb { background: rgba(232,0,28,0.35); border-radius: 2px; }
-    .reveal       { opacity: 0; transform: translateY(26px); transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1); }
-    .reveal.visible { opacity: 1; transform: none; }
-    .reveal-left  { opacity: 0; transform: translateX(-26px); transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1); }
-    .reveal-left.visible { opacity: 1; transform: none; }
-    .reveal-right { opacity: 0; transform: translateX(26px); transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1); }
-    .reveal-right.visible { opacity: 1; transform: none; }
-    .d1 { transition-delay: 0.10s; } .d2 { transition-delay: 0.20s; } .d3 { transition-delay: 0.30s; } .d4 { transition-delay: 0.40s; }
-    input::placeholder, textarea::placeholder { color: rgba(90,90,114,0.7); }
-    input, textarea, select { color: #fff; }
-    select option { background: #14141E; color: #fff; }
-    .nav-links-desktop { display: flex; }
-    .mobile-menu-btn { display: none; }
-    @media (max-width: 900px) {
-      .nav-links-desktop { display: none !important; }
-      .nav-cta-desktop { display: none !important; }
-      .mobile-menu-btn { display: block !important; }
-      .hero-content { padding: 100px 24px 40px !important; }
-      .hero-stats { padding: 0 24px 48px !important; }
-      .hero-stats-grid { grid-template-columns: repeat(2,1fr) !important; }
-      .section-inner { padding: 0 24px !important; }
-      .two-col { grid-template-columns: 1fr !important; gap: 32px !important; }
-      .products-grid { grid-template-columns: 1fr !important; }
-      .three-col { grid-template-columns: 1fr !important; }
-      .four-col { grid-template-columns: repeat(2,1fr) !important; }
-      .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
-      .contact-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
-      .eng-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:#06060A;color:#fff;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    #root{min-height:100vh}
+    ::-webkit-scrollbar{width:3px}
+    ::-webkit-scrollbar-track{background:#06060A}
+    ::-webkit-scrollbar-thumb{background:linear-gradient(to bottom,#E8001C,#B8CDD8);border-radius:2px}
+
+    /* KEYFRAMES */
+    @keyframes orb1{0%,100%{transform:translate(0,0) scale(1);opacity:.5}50%{transform:translate(40px,-35px) scale(1.15);opacity:.85}}
+    @keyframes orb2{0%,100%{transform:translate(0,0) scale(1);opacity:.3}50%{transform:translate(-35px,40px) scale(.9);opacity:.65}}
+    @keyframes orb3{0%,100%{transform:translate(0,0);opacity:.35}33%{transform:translate(25px,-45px);opacity:.65}66%{transform:translate(-25px,20px);opacity:.25}}
+    @keyframes scan{0%{transform:translateY(0);opacity:0}5%{opacity:.5}95%{opacity:.5}100%{transform:translateY(100vh);opacity:0}}
+    @keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+    @keyframes prog{from{width:0}to{width:var(--w,80%)}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+    @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    @keyframes fadein{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+    .reveal.visible{opacity:1;transform:none}
+    .reveal-left{opacity:0;transform:translateX(-30px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+    .reveal-left.visible{opacity:1;transform:none}
+    .reveal-right{opacity:0;transform:translateX(30px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+    .reveal-right.visible{opacity:1;transform:none}
+    .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.40s}
+
+    /* GLASSMORPHISM - gradient border trick using padding-box/border-box */
+    .gb-red{
+      background:
+        linear-gradient(155deg,rgba(16,8,12,.88) 0%,rgba(16,16,28,.78) 100%) padding-box,
+        linear-gradient(135deg,rgba(232,0,28,.5),rgba(255,80,80,.08),rgba(184,205,216,.12)) border-box;
+      border:1px solid transparent;
+    }
+    .gb-red:hover{
+      background:
+        linear-gradient(155deg,rgba(20,8,14,.92) 0%,rgba(18,18,34,.85) 100%) padding-box,
+        linear-gradient(135deg,rgba(232,0,28,.75),rgba(255,100,100,.18),rgba(184,205,216,.25)) border-box;
+    }
+    .gb-plat{
+      background:
+        linear-gradient(155deg,rgba(10,14,22,.88) 0%,rgba(14,16,30,.78) 100%) padding-box,
+        linear-gradient(135deg,rgba(184,205,216,.32),rgba(255,255,255,.05),rgba(232,0,28,.14)) border-box;
+      border:1px solid transparent;
+    }
+    .gb-subtle{
+      background:
+        linear-gradient(155deg,rgba(12,12,20,.75) 0%,rgba(16,16,28,.65) 100%) padding-box,
+        linear-gradient(135deg,rgba(255,255,255,.1),rgba(255,255,255,.02),rgba(232,0,28,.08)) border-box;
+      border:1px solid transparent;
+    }
+
+    /* BLUR */
+    .blur24{backdrop-filter:blur(24px) saturate(180%);-webkit-backdrop-filter:blur(24px) saturate(180%)}
+    .blur32{backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%)}
+
+    /* PATTERNS */
+    .dot-grid{background-image:radial-gradient(rgba(255,255,255,.035) 1px,transparent 1px);background-size:30px 30px}
+    .line-grid{background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:48px 48px}
+
+    /* PROGRESS */
+    .prog-track{height:1.5px;background:rgba(255,255,255,.07);border-radius:1px;overflow:hidden;margin-top:10px}
+    .prog-fill{height:100%;background:linear-gradient(90deg,#E8001C,#FF4444);border-radius:1px;width:0;transition:width 1.5s cubic-bezier(.22,1,.36,1);box-shadow:0 0 8px rgba(232,0,28,.65)}
+    .prog-fill.on{width:var(--w,85%)}
+
+    /* BADGES */
+    .br{display:inline-flex;align-items:center;padding:3px 9px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:8.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:rgba(232,0,28,.1);color:rgba(232,0,28,.9);border:1px solid rgba(232,0,28,.22)}
+    .bp{display:inline-flex;align-items:center;padding:3px 9px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:8.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:rgba(184,205,216,.07);color:rgba(184,205,216,.8);border:1px solid rgba(184,205,216,.18)}
+
+    /* FORM */
+    input::placeholder,textarea::placeholder{color:rgba(90,90,114,.55)}
+    input,textarea,select{color:#fff}
+    select option{background:#10101C;color:#fff}
+
+    /* NAV */
+    .navd{display:flex}
+    .navmb{display:none}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .navd{display:none!important}
+      .navcta{display:none!important}
+      .navmb{display:block!important}
+      .hc{padding:100px 24px 40px!important}
+      .hs{padding:0 24px 48px!important}
+      .hsg{grid-template-columns:repeat(2,1fr)!important}
+      .si{padding:0 24px!important}
+      .tc{grid-template-columns:1fr!important;gap:32px!important}
+      .pg{grid-template-columns:1fr!important}
+      .thr{grid-template-columns:1fr!important}
+      .foc{grid-template-columns:repeat(2,1fr)!important}
+      .fg{grid-template-columns:1fr 1fr!important;gap:32px!important}
+      .cg{grid-template-columns:1fr!important;gap:40px!important}
+      .eg{grid-template-columns:1fr!important;gap:0!important}
     }
   </style>
   <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
@@ -53,323 +114,400 @@
 <div id="root"></div>
 <script type="text/babel">
 
-// ─── SHARED ──────────────────────────────────────────────────────────────────
-
-const MDM_T = {
-  black:'#0B0B10', surfaceDark:'#14141E', surfaceMid:'#1E1E2E', surfaceLight:'#28283C',
-  red:'#E8001C', redDark:'#B8001A', redLight:'#FF1A33',
-  platinum:'#B8CDD8', platinumDark:'#7A9AAA', platinumLight:'#D8E8EE',
-  white:'#FFFFFF', offWhite:'#D8D8E0', muted:'#5A5A72', subtle:'#3A3A52',
-  border:'rgba(255,255,255,0.08)', borderMid:'rgba(255,255,255,0.12)', borderStrong:'rgba(255,255,255,0.18)',
+const T={
+  bg:'#06060A',s1:'#0C0C16',s2:'#121220',s3:'#181830',
+  red:'#E8001C',redDk:'#B8001A',redLt:'#FF2233',
+  plat:'#B8CDD8',platDk:'#7A9AAA',platLt:'#D8E8EE',
+  off:'#D0D0DC',muted:'#585872',subtle:'#343450',
+  b:'rgba(255,255,255,.07)',bm:'rgba(255,255,255,.11)',
 };
 
-function LogoMark({ size=40, style={} }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none" style={{width:size,height:size,flexShrink:0,...style}}>
-      <polygon points="40,4 76,40 40,76 4,40" fill="#E8001C"/>
-      <g fill="#FFFFFF">
-        <path d="M10 28h6l8 14 8-14h6v24H32V40l-6 10h-2l-6-10v12H10V28z"/>
-        <path d="M40 28h10c7 0 11 4.5 11 12s-4 12-11 12H40V28zm5 5v14h4c3.5 0 6-2.5 6-7s-2.5-7-6-7h-4z"/>
-      </g>
-      <rect x="16" y="57" width="48" height="2" rx="1" fill="#B8CDD8"/>
-    </svg>
-  );
-}
+function Mk({sz=40,style={}}){return(
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none" style={{width:sz,height:sz,flexShrink:0,...style}}>
+    <polygon points="40,4 76,40 40,76 4,40" fill="#E8001C"/>
+    <g fill="#fff">
+      <path d="M10 28h6l8 14 8-14h6v24H32V40l-6 10h-2l-6-10v12H10V28z"/>
+      <path d="M40 28h10c7 0 11 4.5 11 12s-4 12-11 12H40V28zm5 5v14h4c3.5 0 6-2.5 6-7s-2.5-7-6-7h-4z"/>
+    </g>
+    <rect x="16" y="57" width="48" height="2" rx="1" fill="#B8CDD8"/>
+  </svg>
+);}
 
-function Logo({ height=44, style={} }) {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none" style={{height,width:'auto',...style}}>
-      <g fill="#FFFFFF">
-        <path d="M8 16h10l14 28 14-28h10v48H46V36l-10 20h-4L22 36v28H8V16z"/>
-        <path d="M62 16h18c14 0 22 9 22 24s-8 24-22 24H62V16zm10 10v28h7c7 0 13-5 13-14s-6-14-13-14h-7z"/>
-        <path d="M108 16h10l14 28 14-28h10v48h-10V36l-10 20h-4l-10-20v28h-10V16z"/>
-      </g>
-      <text x="162" y="44" fontFamily="'Orbitron',sans-serif" fontSize="22" fontWeight="700" letterSpacing="6" fill="#B8CDD8" textAnchor="start">MOTORSPORTS</text>
-      <rect x="8" y="70" width="304" height="2" fill="#E8001C"/>
-    </svg>
-  );
-}
+function Logo({h=44,style={}}){return(
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none" style={{height:h,width:'auto',...style}}>
+    <g fill="#fff">
+      <path d="M8 16h10l14 28 14-28h10v48H46V36l-10 20h-4L22 36v28H8V16z"/>
+      <path d="M62 16h18c14 0 22 9 22 24s-8 24-22 24H62V16zm10 10v28h7c7 0 13-5 13-14s-6-14-13-14h-7z"/>
+      <path d="M108 16h10l14 28 14-28h10v48h-10V36l-10 20h-4l-10-20v28h-10V16z"/>
+    </g>
+    <text x="162" y="44" fontFamily="'Orbitron',sans-serif" fontSize="22" fontWeight="700" letterSpacing="6" fill="#B8CDD8" textAnchor="start">MOTORSPORTS</text>
+    <rect x="8" y="70" width="304" height="2" fill="#E8001C"/>
+  </svg>
+);}
 
-function RedDivider({ width=48, style={} }) {
-  return <div style={{width,height:2,background:MDM_T.red,flexShrink:0,...style}} />;
-}
+function Div({w=48,style={}}){return <div style={{width:w,height:2,background:`linear-gradient(90deg,${T.red},${T.redLt})`,flexShrink:0,borderRadius:1,boxShadow:`0 0 10px rgba(232,0,28,.5)`,...style}}/>;}
 
-function SectionLabel({ children, style={} }) {
-  return (
-    <div style={{display:'flex',alignItems:'center',gap:10,fontFamily:"'Inter',sans-serif",fontSize:10,fontWeight:600,color:MDM_T.red,letterSpacing:'0.2em',textTransform:'uppercase',...style}}>
-      <div style={{width:20,height:1.5,background:MDM_T.red,flexShrink:0}} />
-      {children}
-    </div>
-  );
-}
+function SL({children,style={}}){return(
+  <div style={{display:'flex',alignItems:'center',gap:10,fontFamily:"'Inter',sans-serif",fontSize:10,fontWeight:600,color:T.red,letterSpacing:'0.2em',textTransform:'uppercase',...style}}>
+    <div style={{width:20,height:1.5,background:`linear-gradient(90deg,${T.red},${T.redLt})`,boxShadow:`0 0 6px rgba(232,0,28,.6)`,flexShrink:0}}/>
+    {children}
+  </div>
+);}
 
-function countUp(el, target, suffix='') {
-  if (!el) return;
-  const start = performance.now(), duration = 1400;
-  const frame = (now) => {
-    const p = Math.min((now - start) / duration, 1);
-    const ease = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.round(ease * target) + suffix;
-    if (p < 1) requestAnimationFrame(frame);
+function countUp(el,target,suffix=''){
+  if(!el) return;
+  const s=performance.now(),d=1500;
+  const f=(n)=>{
+    const p=Math.min((n-s)/d,1),e=1-Math.pow(1-p,4);
+    el.textContent=Math.round(e*target)+suffix;
+    if(p<1) requestAnimationFrame(f);
   };
-  requestAnimationFrame(frame);
+  requestAnimationFrame(f);
 }
 
-// ─── HEADER ──────────────────────────────────────────────────────────────────
+function Tilt({children,style={},className='',onMouseEnter,onMouseLeave}){
+  const ref=React.useRef(null);
+  const mv=(e)=>{
+    const el=ref.current;if(!el) return;
+    const r=el.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    el.style.transform=`perspective(900px) rotateX(${y*-10}deg) rotateY(${x*10}deg) translateZ(8px)`;
+    el.style.boxShadow=`${x*-28}px ${y*-28}px 48px rgba(232,0,28,.13),0 24px 60px rgba(0,0,0,.6)`;
+  };
+  const lv=()=>{
+    const el=ref.current;if(!el) return;
+    el.style.transform='';
+    el.style.boxShadow='';
+    if(onMouseLeave) onMouseLeave();
+  };
+  return <div ref={ref} className={className} style={{transition:'transform .2s ease,box-shadow .2s ease',...style}} onMouseMove={mv} onMouseLeave={lv} onMouseEnter={onMouseEnter}>{children}</div>;
+}
 
-function Header({ activeSection }) {
-  const [scrolled, setScrolled] = React.useState(false);
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const navItems = [
-    {label:'Home',id:'hero'},{label:'Products',id:'products'},
-    {label:'Engineering',id:'engineering'},{label:'About',id:'about'},{label:'Contact',id:'contact'},
+function initLines(canvas){
+  const ctx=canvas.getContext('2d');
+  let W,H,lines=[],raf;
+  const PAL=[
+    {r:232,g:0,b:28,aMin:.28,aMax:.72,wMin:.8,wMax:2.2,glow:true},
+    {r:255,g:255,b:255,aMin:.02,aMax:.1,wMin:.4,wMax:1.0,glow:false},
+    {r:184,g:205,b:216,aMin:.05,aMax:.2,wMin:.4,wMax:1.2,glow:false},
   ];
-  React.useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', fn, {passive:true});
-    return () => window.removeEventListener('scroll', fn);
-  }, []);
-  const scrollTo = (id) => {
-    const el = document.getElementById(id);
-    if (el) window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - 64, behavior:'smooth'});
-    setMobileOpen(false);
+  const resize=()=>{W=canvas.width=canvas.offsetWidth;H=canvas.height=canvas.offsetHeight;};
+  const make=(fr=true)=>{
+    const p=PAL[Math.floor(Math.random()*PAL.length)];
+    return{x:fr?W+40+Math.random()*400:Math.random()*W,y:H*(.04+Math.random()*.92),len:60+Math.random()*280,spd:4+Math.random()*14,a:p.aMin+Math.random()*(p.aMax-p.aMin),w:p.wMin+Math.random()*(p.wMax-p.wMin),c:`${p.r},${p.g},${p.b}`,glow:p.glow};
   };
-  return (
-    <header style={{position:'fixed',top:0,left:0,right:0,zIndex:1000,background:scrolled?'rgba(11,11,16,0.92)':'transparent',backdropFilter:scrolled?'blur(24px)':'none',WebkitBackdropFilter:scrolled?'blur(24px)':'none',borderBottom:scrolled?'1px solid rgba(255,255,255,0.07)':'none',transition:'background 350ms ease'}}>
+  resize();
+  window.addEventListener('resize',resize);
+  for(let i=0;i<34;i++) lines.push(make(false));
+  const draw=()=>{
+    ctx.clearRect(0,0,W,H);
+    lines.forEach((l,i)=>{
+      l.x-=l.spd;
+      if(l.x+l.len<0){lines[i]=make(true);return;}
+      const g=ctx.createLinearGradient(l.x-l.len,0,l.x,0);
+      g.addColorStop(0,`rgba(${l.c},0)`);
+      g.addColorStop(1,`rgba(${l.c},${l.a})`);
+      ctx.save();
+      if(l.glow){ctx.shadowBlur=8;ctx.shadowColor=`rgba(${l.c},.9)`;}
+      ctx.beginPath();ctx.strokeStyle=g;ctx.lineWidth=l.w;
+      ctx.moveTo(l.x-l.len,l.y);ctx.lineTo(l.x,l.y);ctx.stroke();
+      ctx.restore();
+    });
+    raf=requestAnimationFrame(draw);
+  };
+  draw();
+  return()=>{cancelAnimationFrame(raf);window.removeEventListener('resize',resize);};
+}
+
+// ─── HEADER ───────────────────────────────────────────────────────────────────
+
+function Header({active}){
+  const [sc,setSc]=React.useState(false);
+  const [mo,setMo]=React.useState(false);
+  const nav=[{l:'Home',id:'hero'},{l:'Products',id:'products'},{l:'Engineering',id:'engineering'},{l:'About',id:'about'},{l:'Contact',id:'contact'}];
+  React.useEffect(()=>{
+    const fn=()=>setSc(window.scrollY>55);
+    window.addEventListener('scroll',fn,{passive:true});
+    return()=>window.removeEventListener('scroll',fn);
+  },[]);
+  const go=(id)=>{
+    const el=document.getElementById(id);
+    if(el) window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-64,behavior:'smooth'});
+    setMo(false);
+  };
+  return(
+    <header style={{position:'fixed',top:0,left:0,right:0,zIndex:1000,
+      background:sc?'rgba(6,6,10,.9)':'transparent',
+      backdropFilter:sc?'blur(28px) saturate(180%)':'none',
+      WebkitBackdropFilter:sc?'blur(28px) saturate(180%)':'none',
+      borderBottom:sc?`1px solid rgba(232,0,28,.08)`:'none',
+      boxShadow:sc?'0 1px 0 rgba(232,0,28,.07),0 4px 32px rgba(0,0,0,.4)':'none',
+      transition:'background .4s,backdrop-filter .4s,border-color .4s,box-shadow .4s'}}>
       <div style={{maxWidth:1280,margin:'0 auto',height:64,display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0 48px'}}>
-        <button onClick={()=>scrollTo('hero')} style={{background:'none',border:'none',cursor:'pointer',padding:0,display:'flex',alignItems:'center',gap:10}}>
-          <LogoMark size={30} />
+        <button onClick={()=>go('hero')} style={{background:'none',border:'none',cursor:'pointer',padding:0,display:'flex',alignItems:'center',gap:10}}>
+          <Mk sz={28}/>
           <div>
-            <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:15,fontWeight:800,color:'#fff',letterSpacing:'0.02em',lineHeight:1}}>MDM</div>
-            <div style={{fontFamily:"'Inter',sans-serif",fontSize:7,fontWeight:600,color:MDM_T.muted,letterSpacing:'0.22em',textTransform:'uppercase',marginTop:2}}>MOTORSPORTS</div>
+            <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:14,fontWeight:800,color:'#fff',letterSpacing:'.02em',lineHeight:1}}>MDM</div>
+            <div style={{fontFamily:"'Inter',sans-serif",fontSize:7,fontWeight:600,color:T.muted,letterSpacing:'.22em',textTransform:'uppercase',marginTop:2}}>MOTORSPORTS</div>
           </div>
         </button>
-        <nav className="nav-links-desktop" style={{gap:2}}>
-          {navItems.map(item => {
-            const active = activeSection === item.id;
-            return (
-              <button key={item.id} onClick={()=>scrollTo(item.id)} style={{background:'none',border:'none',cursor:'pointer',fontFamily:"'Inter',sans-serif",fontSize:12.5,fontWeight:active?600:400,color:active?'#fff':MDM_T.muted,padding:'8px 16px',letterSpacing:'0.03em',position:'relative',transition:'color 200ms'}}
-                onMouseEnter={e=>{if(!active)e.currentTarget.style.color=MDM_T.offWhite;}}
-                onMouseLeave={e=>{if(!active)e.currentTarget.style.color=MDM_T.muted;}}>
-                {item.label}
-                {active && <div style={{position:'absolute',bottom:4,left:16,right:16,height:1.5,background:MDM_T.red,borderRadius:1}} />}
+        <nav className="navd" style={{gap:2}}>
+          {nav.map(item=>{
+            const on=active===item.id;
+            return(
+              <button key={item.id} onClick={()=>go(item.id)} style={{background:'none',border:'none',cursor:'pointer',fontFamily:"'Inter',sans-serif",fontSize:12.5,fontWeight:on?600:400,color:on?'#fff':T.muted,padding:'8px 16px',letterSpacing:'.03em',position:'relative',transition:'color 200ms'}}
+                onMouseEnter={e=>{if(!on)e.currentTarget.style.color=T.off;}}
+                onMouseLeave={e=>{if(!on)e.currentTarget.style.color=T.muted;}}>
+                {item.l}
+                {on&&<div style={{position:'absolute',bottom:4,left:16,right:16,height:1.5,background:`linear-gradient(90deg,${T.red},${T.redLt})`,borderRadius:1,boxShadow:`0 0 8px rgba(232,0,28,.6)`}}/>}
               </button>
             );
           })}
         </nav>
-        <button className="nav-cta-desktop nav-links-desktop" onClick={()=>scrollTo('contact')} style={{fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:600,letterSpacing:'0.12em',textTransform:'uppercase',background:MDM_T.red,color:'#fff',border:'none',borderRadius:3,padding:'9px 22px',cursor:'pointer',transition:'background 150ms,box-shadow 200ms'}}
-          onMouseEnter={e=>{e.currentTarget.style.background=MDM_T.redLight;e.currentTarget.style.boxShadow='0 0 28px rgba(232,0,28,0.45)';}}
-          onMouseLeave={e=>{e.currentTarget.style.background=MDM_T.red;e.currentTarget.style.boxShadow='none';}}>
+        <button className="navcta navd" onClick={()=>go('contact')}
+          style={{fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',
+            background:`linear-gradient(135deg,${T.red},${T.redLt})`,color:'#fff',border:'none',borderRadius:3,
+            padding:'9px 22px',cursor:'pointer',transition:'box-shadow .2s,transform .15s',
+            boxShadow:'0 4px 20px rgba(232,0,28,.25)'}}
+          onMouseEnter={e=>{e.currentTarget.style.boxShadow='0 0 32px rgba(232,0,28,.6),0 8px 28px rgba(232,0,28,.35)';e.currentTarget.style.transform='translateY(-1px)';}}
+          onMouseLeave={e=>{e.currentTarget.style.boxShadow='0 4px 20px rgba(232,0,28,.25)';e.currentTarget.style.transform='';}}>
           Get a Quote
         </button>
-        <button className="mobile-menu-btn" onClick={()=>setMobileOpen(o=>!o)} style={{background:'none',border:'none',cursor:'pointer',color:'#fff',padding:8}} aria-label="Menu">
+        <button className="navmb" onClick={()=>setMo(o=>!o)} style={{background:'none',border:'none',cursor:'pointer',color:'#fff',padding:8}}>
           <svg width="22" height="16" viewBox="0 0 22 16" fill="none"><rect y="0" width="22" height="2" rx="1" fill="white"/><rect y="7" width="22" height="2" rx="1" fill="white"/><rect y="14" width="22" height="2" rx="1" fill="white"/></svg>
         </button>
       </div>
-      {mobileOpen && (
-        <div style={{background:'rgba(11,11,16,0.98)',backdropFilter:'blur(24px)',borderBottom:'1px solid rgba(255,255,255,0.07)',padding:'16px 24px 24px'}}>
-          {navItems.map(item => (
-            <button key={item.id} onClick={()=>scrollTo(item.id)} style={{display:'block',width:'100%',background:'none',border:'none',cursor:'pointer',fontFamily:"'Inter',sans-serif",fontSize:15,color:activeSection===item.id?'#fff':MDM_T.muted,fontWeight:activeSection===item.id?600:400,padding:'12px 0',textAlign:'left',letterSpacing:'0.03em',borderBottom:'1px solid rgba(255,255,255,0.05)'}}>{item.label}</button>
+      {mo&&(
+        <div style={{background:'rgba(6,6,10,.98)',backdropFilter:'blur(28px)',borderBottom:`1px solid ${T.b}`,padding:'16px 24px 24px'}}>
+          {nav.map(item=>(
+            <button key={item.id} onClick={()=>go(item.id)} style={{display:'block',width:'100%',background:'none',border:'none',cursor:'pointer',fontFamily:"'Inter',sans-serif",fontSize:15,color:active===item.id?'#fff':T.muted,fontWeight:active===item.id?600:400,padding:'12px 0',textAlign:'left',letterSpacing:'.03em',borderBottom:`1px solid ${T.b}`}}>{item.l}</button>
           ))}
-          <button onClick={()=>scrollTo('contact')} style={{marginTop:16,fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:600,letterSpacing:'0.12em',textTransform:'uppercase',background:MDM_T.red,color:'#fff',border:'none',borderRadius:3,padding:'12px 22px',cursor:'pointer',width:'100%'}}>Get a Quote</button>
+          <button onClick={()=>go('contact')} style={{marginTop:16,fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',background:`linear-gradient(135deg,${T.red},${T.redLt})`,color:'#fff',border:'none',borderRadius:3,padding:'12px 22px',cursor:'pointer',width:'100%'}}>Get a Quote</button>
         </div>
       )}
     </header>
   );
 }
 
-// ─── HERO ────────────────────────────────────────────────────────────────────
+// ─── HERO ─────────────────────────────────────────────────────────────────────
 
-function initSpeedLines(canvas) {
-  const ctx = canvas.getContext('2d');
-  let W, H, lines=[], raf;
-  const PALETTE = [
-    {r:232,g:0,b:28,aMin:0.25,aMax:0.6,wMin:0.6,wMax:1.8},
-    {r:255,g:255,b:255,aMin:0.03,aMax:0.12,wMin:0.4,wMax:1.0},
-    {r:184,g:205,b:216,aMin:0.05,aMax:0.18,wMin:0.4,wMax:1.2},
+function Hero(){
+  const cvs=React.useRef(null);
+  React.useEffect(()=>{if(cvs.current) return initLines(cvs.current);},[]);
+  const stats=[
+    {v:'±0.001',u:'mm',l:'Machining Tolerance'},
+    {v:'48',u:'hr',l:'Rapid Prototype'},
+    {v:'ISO',u:'9001',l:'Quality Certified'},
+    {v:'20',u:'+',l:'Years Racing'},
   ];
-  function resize() { W=canvas.width=canvas.offsetWidth; H=canvas.height=canvas.offsetHeight; }
-  function makeLine(startRight=true) {
-    const p=PALETTE[Math.floor(Math.random()*PALETTE.length)];
-    return {x:startRight?W+20+Math.random()*300:Math.random()*W,y:H*(0.04+Math.random()*0.92),len:50+Math.random()*220,spd:3+Math.random()*11,alpha:p.aMin+Math.random()*(p.aMax-p.aMin),w:p.wMin+Math.random()*(p.wMax-p.wMin),color:`${p.r},${p.g},${p.b}`};
-  }
-  resize();
-  window.addEventListener('resize', resize);
-  for (let i=0;i<28;i++) lines.push(makeLine(false));
-  function draw() {
-    ctx.clearRect(0,0,W,H);
-    lines.forEach((l,i)=>{
-      l.x-=l.spd;
-      if (l.x+l.len<0){lines[i]=makeLine(true);return;}
-      const grad=ctx.createLinearGradient(l.x-l.len,0,l.x,0);
-      grad.addColorStop(0,`rgba(${l.color},0)`);
-      grad.addColorStop(1,`rgba(${l.color},${l.alpha})`);
-      ctx.beginPath(); ctx.strokeStyle=grad; ctx.lineWidth=l.w;
-      ctx.moveTo(l.x-l.len,l.y); ctx.lineTo(l.x,l.y); ctx.stroke();
-    });
-    raf=requestAnimationFrame(draw);
-  }
-  draw();
-  return ()=>{cancelAnimationFrame(raf);window.removeEventListener('resize',resize);};
-}
+  const go=(id)=>{const el=document.getElementById(id);if(el) window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-64,behavior:'smooth'});};
+  return(
+    <section id="hero" style={{position:'relative',minHeight:'100vh',background:T.bg,display:'flex',flexDirection:'column',justifyContent:'center',overflow:'hidden'}}>
+      {/* Base gradient */}
+      <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 90% 80% at -10% 120%,rgba(232,0,28,.2) 0%,transparent 55%),radial-gradient(ellipse 60% 60% at 110% -10%,rgba(184,205,216,.06) 0%,transparent 50%)',zIndex:0,pointerEvents:'none'}}/>
+      {/* Dot grid */}
+      <div className="dot-grid" style={{position:'absolute',inset:0,zIndex:0,pointerEvents:'none',opacity:.8}}/>
+      {/* Floating orbs */}
+      <div style={{position:'absolute',width:700,height:700,top:'-15%',right:'-8%',borderRadius:'50%',background:'radial-gradient(circle,rgba(232,0,28,.1) 0%,transparent 65%)',filter:'blur(50px)',animation:'orb1 10s ease-in-out infinite',pointerEvents:'none',zIndex:1}}/>
+      <div style={{position:'absolute',width:500,height:500,bottom:'-5%',left:'-5%',borderRadius:'50%',background:'radial-gradient(circle,rgba(184,205,216,.07) 0%,transparent 65%)',filter:'blur(50px)',animation:'orb2 14s ease-in-out infinite',pointerEvents:'none',zIndex:1}}/>
+      <div style={{position:'absolute',width:280,height:280,top:'35%',right:'28%',borderRadius:'50%',background:'radial-gradient(circle,rgba(232,0,28,.06) 0%,transparent 70%)',filter:'blur(35px)',animation:'orb3 18s ease-in-out infinite',pointerEvents:'none',zIndex:1}}/>
+      {/* Speed lines */}
+      <canvas ref={cvs} style={{position:'absolute',inset:0,width:'100%',height:'100%',zIndex:2,pointerEvents:'none'}}/>
+      {/* Scanline */}
+      <div style={{position:'absolute',top:0,left:0,right:0,height:1,background:`linear-gradient(90deg,transparent,rgba(232,0,28,.45),transparent)`,animation:'scan 9s linear infinite',zIndex:3,pointerEvents:'none'}}/>
+      {/* Diagonal accent */}
+      <div style={{position:'absolute',top:0,right:'22%',width:1,height:'100%',background:'linear-gradient(to bottom,transparent,rgba(232,0,28,.1),transparent)',transform:'skewX(-8deg)',zIndex:2,pointerEvents:'none'}}/>
 
-function HeroSection() {
-  const canvasRef = React.useRef(null);
-  React.useEffect(()=>{if(canvasRef.current)return initSpeedLines(canvasRef.current);},[]);
-  const stats=[{value:'±0.001 mm',label:'Machining Tolerance'},{value:'48 hr',label:'Rapid Prototype'},{value:'ISO 9001',label:'Quality Certified'},{value:'20+',label:'Years Racing'}];
-  const go=(id)=>{const el=document.getElementById(id);if(el)window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-64,behavior:'smooth'});};
-  return (
-    <section id="hero" style={{position:'relative',minHeight:'100vh',background:'radial-gradient(ellipse 70% 70% at -5% 110%,rgba(232,0,28,0.16) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 105% -10%,rgba(184,205,216,0.07) 0%,transparent 55%),#0B0B10',display:'flex',flexDirection:'column',justifyContent:'center',overflow:'hidden'}}>
-      <div style={{position:'absolute',inset:0,zIndex:0,backgroundImage:'radial-gradient(rgba(255,255,255,0.035) 1px,transparent 1px)',backgroundSize:'40px 40px',pointerEvents:'none'}} />
-      <canvas ref={canvasRef} style={{position:'absolute',inset:0,width:'100%',height:'100%',zIndex:1,pointerEvents:'none'}} />
-      <div style={{position:'absolute',top:0,right:'22%',width:1,height:'100%',background:'linear-gradient(to bottom,transparent,rgba(232,0,28,0.12),transparent)',transform:'skewX(-8deg)',zIndex:1,pointerEvents:'none'}} />
-      <div className="hero-content" style={{position:'relative',zIndex:2,maxWidth:1280,margin:'0 auto',width:'100%',padding:'120px 64px 40px'}}>
-        <div style={{maxWidth:720}}>
-          <div className="reveal" style={{marginBottom:28}}><SectionLabel>Silverstone, UK · Est. 2003</SectionLabel></div>
-          <h1 className="reveal" style={{fontFamily:"'Orbitron',sans-serif",fontSize:'clamp(48px,8vw,108px)',fontWeight:900,lineHeight:0.9,color:'#fff',letterSpacing:'-0.03em',textTransform:'uppercase',marginBottom:0}}>PRECISION</h1>
-          <h1 className="reveal d1" style={{fontFamily:"'Orbitron',sans-serif",fontSize:'clamp(48px,8vw,108px)',fontWeight:900,lineHeight:0.9,background:'linear-gradient(90deg,#fff 0%,#B8CDD8 100%)',WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text',letterSpacing:'-0.03em',textTransform:'uppercase',marginBottom:28}}>ENGINEERED.</h1>
-          <RedDivider width={48} style={{marginBottom:24}} />
-          <p className="reveal d2" style={{fontFamily:"'Inter',sans-serif",fontSize:16,fontWeight:300,color:'rgba(255,255,255,0.5)',lineHeight:1.85,maxWidth:440,marginBottom:40}}>Custom-engineered components for competitive motorsport. From CAD brief to race-ready part — at tolerances measured in microns.</p>
-          <div className="reveal d3" style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}>
-            <button onClick={()=>go('products')} style={{fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:600,letterSpacing:'0.12em',textTransform:'uppercase',background:MDM_T.red,color:'#fff',border:'none',borderRadius:3,padding:'13px 30px',cursor:'pointer',transition:'background 150ms,box-shadow 200ms'}}
-              onMouseEnter={e=>{e.currentTarget.style.background=MDM_T.redLight;e.currentTarget.style.boxShadow='0 0 32px rgba(232,0,28,0.5)';}}
-              onMouseLeave={e=>{e.currentTarget.style.background=MDM_T.red;e.currentTarget.style.boxShadow='none';}}>Our Products</button>
-            <button onClick={()=>go('engineering')} style={{fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:400,color:'rgba(255,255,255,0.4)',background:'none',border:'none',cursor:'pointer',letterSpacing:'0.08em',transition:'color 150ms'}}
-              onMouseEnter={e=>{e.currentTarget.style.color=MDM_T.platinum;}}
-              onMouseLeave={e=>{e.currentTarget.style.color='rgba(255,255,255,0.4)';}}>Engineering capabilities →</button>
+      {/* Content */}
+      <div className="hc" style={{position:'relative',zIndex:4,maxWidth:1280,margin:'0 auto',width:'100%',padding:'130px 64px 40px'}}>
+        <div style={{maxWidth:780}}>
+          <div className="reveal" style={{marginBottom:28}}><SL>Silverstone, UK · Est. 2003</SL></div>
+          <div className="reveal">
+            <h1 style={{fontFamily:"'Orbitron',sans-serif",fontSize:'clamp(52px,8.5vw,118px)',fontWeight:900,lineHeight:.87,color:'#fff',letterSpacing:'-0.03em',textTransform:'uppercase'}}>PRECISION</h1>
+          </div>
+          <div className="reveal d1" style={{marginBottom:26}}>
+            <h1 style={{fontFamily:"'Orbitron',sans-serif",fontSize:'clamp(52px,8.5vw,118px)',fontWeight:900,lineHeight:.87,letterSpacing:'-0.03em',textTransform:'uppercase',
+              background:'linear-gradient(135deg,#fff 0%,#D8E8EE 35%,#B8CDD8 65%,#FF3333 100%)',
+              WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text'}}>ENGINEERED.</h1>
+          </div>
+          <Div w={48} style={{marginBottom:26}}/>
+          <p className="reveal d2" style={{fontFamily:"'Inter',sans-serif",fontSize:16,fontWeight:300,color:'rgba(255,255,255,.44)',lineHeight:1.9,maxWidth:468,marginBottom:46}}>
+            Custom-engineered components for competitive motorsport. From CAD brief to race-ready part — at tolerances measured in microns.
+          </p>
+          <div className="reveal d3" style={{display:'flex',gap:14,alignItems:'center',flexWrap:'wrap'}}>
+            <button onClick={()=>go('products')}
+              style={{fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',
+                background:`linear-gradient(135deg,${T.red},${T.redLt})`,color:'#fff',border:'none',borderRadius:3,
+                padding:'14px 34px',cursor:'pointer',transition:'box-shadow .2s,transform .15s',
+                boxShadow:'0 4px 24px rgba(232,0,28,.35)'}}
+              onMouseEnter={e=>{e.currentTarget.style.boxShadow='0 0 44px rgba(232,0,28,.7),0 8px 32px rgba(232,0,28,.45)';e.currentTarget.style.transform='translateY(-2px)';}}
+              onMouseLeave={e=>{e.currentTarget.style.boxShadow='0 4px 24px rgba(232,0,28,.35)';e.currentTarget.style.transform='';}}>
+              Our Products
+            </button>
+            <button onClick={()=>go('engineering')}
+              style={{fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:400,color:'rgba(255,255,255,.36)',
+                background:'none',border:'1px solid rgba(255,255,255,.1)',borderRadius:3,
+                padding:'13px 28px',cursor:'pointer',letterSpacing:'.08em',transition:'color .2s,border-color .2s,background .2s'}}
+              onMouseEnter={e=>{e.currentTarget.style.color=T.plat;e.currentTarget.style.borderColor='rgba(184,205,216,.3)';e.currentTarget.style.background='rgba(184,205,216,.05)';}}
+              onMouseLeave={e=>{e.currentTarget.style.color='rgba(255,255,255,.36)';e.currentTarget.style.borderColor='rgba(255,255,255,.1)';e.currentTarget.style.background='none';}}>
+              Engineering capabilities →
+            </button>
           </div>
         </div>
       </div>
-      <div className="hero-stats" style={{position:'relative',zIndex:2,maxWidth:1280,margin:'0 auto',width:'100%',padding:'0 64px 56px'}}>
-        <div className="reveal hero-stats-grid" style={{background:'rgba(14,14,24,0.6)',backdropFilter:'blur(24px)',WebkitBackdropFilter:'blur(24px)',border:'1px solid rgba(255,255,255,0.09)',borderRadius:8,display:'grid',gridTemplateColumns:'repeat(4,1fr)',overflow:'hidden'}}>
+
+      {/* Stats */}
+      <div className="hs" style={{position:'relative',zIndex:4,maxWidth:1280,margin:'0 auto',width:'100%',padding:'0 64px 62px'}}>
+        <div className="reveal hsg gb-plat blur24" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',borderRadius:10,overflow:'hidden'}}>
           {stats.map((s,i)=>(
-            <div key={s.label} style={{padding:'24px 28px',borderRight:i<3?'1px solid rgba(255,255,255,0.07)':'none'}}>
-              <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:22,fontWeight:700,color:'#fff',letterSpacing:'-0.02em',lineHeight:1,marginBottom:6}}>{s.value}</div>
-              <div style={{fontFamily:"'Inter',sans-serif",fontSize:10,fontWeight:500,color:MDM_T.muted,letterSpacing:'0.1em',textTransform:'uppercase'}}>{s.label}</div>
+            <div key={s.l} style={{padding:'22px 28px',borderRight:i<3?`1px solid ${T.b}`:'none'}}>
+              <div style={{display:'flex',alignItems:'baseline',gap:4,marginBottom:5}}>
+                <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:20,fontWeight:800,color:'#fff',letterSpacing:'-0.02em',lineHeight:1}}>{s.v}</div>
+                <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:13,fontWeight:700,color:T.red,lineHeight:1}}>{s.u}</div>
+              </div>
+              <div style={{fontFamily:"'Inter',sans-serif",fontSize:10,fontWeight:500,color:T.muted,letterSpacing:'.1em',textTransform:'uppercase'}}>{s.l}</div>
             </div>
           ))}
         </div>
       </div>
-      <div style={{position:'absolute',bottom:0,left:0,right:0,height:64,background:'linear-gradient(to bottom,transparent,#0B0B10)',zIndex:3,pointerEvents:'none'}} />
+
+      <div style={{position:'absolute',bottom:0,left:0,right:0,height:90,background:'linear-gradient(to bottom,transparent,#06060A)',zIndex:5,pointerEvents:'none'}}/>
     </section>
   );
 }
 
-// ─── PRODUCTS ────────────────────────────────────────────────────────────────
+// ─── PRODUCTS ─────────────────────────────────────────────────────────────────
 
-const PRODUCTS = [
-  {n:'01',name:'Suspension Geometry',spec:'7075-T6 Aluminium · 5-Axis CNC',desc:'Wishbones, uprights, pushrods and tie-rods. Every geometry point verified against your chassis data sheet.',tag:'SUSPENSION'},
-  {n:'02',name:'Drivetrain Components',spec:'Forged · CNC Finished · Ti Hardware',desc:'Output flanges, driveshafts and differential carriers — designed for peak torque without excess mass.',tag:'DRIVETRAIN'},
-  {n:'03',name:'Braking Systems',spec:'Grade 5 Titanium · EN36 Steel',desc:'Caliper carriers, disc bells and bias bar assemblies. Optimised for thermal stability across a full race distance.',tag:'BRAKING'},
-  {n:'04',name:'Aerodynamic Parts',spec:'Pre-preg Carbon · Aluminium Hybrid',desc:'Splitters, diffusers, wing end-plates and dive planes. Autoclave-cured carbon where every gram counts.',tag:'AERO'},
-  {n:'05',name:'Powertrain Accessories',spec:'Billet Aluminium · Inconel 718',desc:'Engine mounts, plenum chambers, dry-sump tanks. Built for continuous high-vibration race environments.',tag:'POWERTRAIN'},
-  {n:'06',name:'One-Off Engineering',spec:'Full Design & Manufacture Service',desc:"Have a problem standard parts can't solve? We take briefs from sketch through FEA to finished component.",tag:'BESPOKE'},
+const PRODS=[
+  {n:'01',name:'Suspension Geometry',spec:'7075-T6 Aluminium · 5-Axis CNC',desc:'Wishbones, uprights, pushrods and tie-rods. Every geometry point verified against your chassis data sheet.',tag:'SUSPENSION',lv:92},
+  {n:'02',name:'Drivetrain Components',spec:'Forged · CNC Finished · Ti Hardware',desc:'Output flanges, driveshafts and differential carriers — designed for peak torque without excess mass.',tag:'DRIVETRAIN',lv:88},
+  {n:'03',name:'Braking Systems',spec:'Grade 5 Titanium · EN36 Steel',desc:'Caliper carriers, disc bells and bias bar assemblies. Optimised for thermal stability across a full race distance.',tag:'BRAKING',lv:95},
+  {n:'04',name:'Aerodynamic Parts',spec:'Pre-preg Carbon · Aluminium Hybrid',desc:'Splitters, diffusers, wing end-plates and dive planes. Autoclave-cured carbon where every gram counts.',tag:'AERO',lv:85},
+  {n:'05',name:'Powertrain Accessories',spec:'Billet Aluminium · Inconel 718',desc:'Engine mounts, plenum chambers, dry-sump tanks. Built for continuous high-vibration race environments.',tag:'POWERTRAIN',lv:90},
+  {n:'06',name:'One-Off Engineering',spec:'Full Design & Manufacture Service',desc:"Have a problem standard parts can't solve? We take briefs from sketch through FEA to finished component.",tag:'BESPOKE',lv:100},
 ];
 
-function ProductCard({ product, delay }) {
-  const enter=(e)=>{
-    e.currentTarget.style.borderColor='rgba(232,0,28,0.45)';
-    e.currentTarget.style.boxShadow='0 12px 40px rgba(0,0,0,0.5),0 0 28px rgba(232,0,28,0.12)';
-    e.currentTarget.style.transform='translateY(-5px)';
-    e.currentTarget.querySelector('.ctag').style.color=MDM_T.red;
-    const arr=e.currentTarget.querySelector('.carr');
-    if(arr){arr.style.opacity='1';arr.style.transform='translateX(0)';}
-    const bar=e.currentTarget.querySelector('.cbar');
-    if(bar)bar.style.opacity='1';
-  };
-  const leave=(e)=>{
-    e.currentTarget.style.borderColor='rgba(255,255,255,0.07)';
-    e.currentTarget.style.boxShadow='none';
-    e.currentTarget.style.transform='translateY(0)';
-    e.currentTarget.querySelector('.ctag').style.color=MDM_T.muted;
-    const arr=e.currentTarget.querySelector('.carr');
-    if(arr){arr.style.opacity='0';arr.style.transform='translateX(-8px)';}
-    const bar=e.currentTarget.querySelector('.cbar');
-    if(bar)bar.style.opacity='0';
-  };
-  return (
-    <div className={`reveal d${delay}`} style={{background:'rgba(20,20,30,0.55)',backdropFilter:'blur(16px)',WebkitBackdropFilter:'blur(16px)',border:'1px solid rgba(255,255,255,0.07)',borderRadius:8,padding:'28px 28px 24px',cursor:'pointer',transition:'border-color 250ms,box-shadow 250ms,transform 280ms',display:'flex',flexDirection:'column',position:'relative',overflow:'hidden'}} onMouseEnter={enter} onMouseLeave={leave}>
-      <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:20}}>
-        <div className="ctag" style={{fontFamily:"'Inter',sans-serif",fontSize:9,fontWeight:600,color:MDM_T.muted,letterSpacing:'0.18em',textTransform:'uppercase',transition:'color 200ms'}}>{product.tag}</div>
-        <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:11,fontWeight:600,color:MDM_T.subtle,letterSpacing:'0.04em'}}>{product.n}</div>
+function PCard({p,delay}){
+  const [hov,setHov]=React.useState(false);
+  const [on,setOn]=React.useState(false);
+  const pr=React.useRef(null);
+  React.useEffect(()=>{
+    const obs=new IntersectionObserver(([e])=>{if(e.isIntersecting) setOn(true);},{threshold:.25});
+    if(pr.current) obs.observe(pr.current);
+    return()=>obs.disconnect();
+  },[]);
+  return(
+    <Tilt className={`reveal d${delay} gb-red blur24`}
+      style={{borderRadius:10,padding:'28px 28px 26px',cursor:'pointer',display:'flex',flexDirection:'column',position:'relative',overflow:'hidden'}}
+      onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}>
+      {/* Top glow line */}
+      <div style={{position:'absolute',top:0,left:0,right:0,height:1,
+        background:hov?`linear-gradient(90deg,transparent,${T.red},${T.redLt},transparent)`:`linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent)`,
+        boxShadow:hov?`0 0 14px rgba(232,0,28,.6)`:'none',transition:'background .3s,box-shadow .3s'}}/>
+      <div style={{display:'flex',justifyContent:'space-between',alignItems:'flex-start',marginBottom:18}}>
+        <span className="br">{p.tag}</span>
+        <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:11,fontWeight:700,color:hov?T.red:T.subtle,letterSpacing:'.04em',transition:'color .25s'}}>{p.n}</div>
       </div>
-      <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:17,fontWeight:700,color:'#fff',letterSpacing:'-0.01em',lineHeight:1.2,marginBottom:10}}>{product.name}</div>
-      <div style={{fontFamily:"'JetBrains Mono',monospace",fontSize:9,fontWeight:500,color:MDM_T.platinumDark,letterSpacing:'0.04em',marginBottom:14}}>{product.spec}</div>
-      <div style={{fontFamily:"'Inter',sans-serif",fontSize:13,fontWeight:300,color:'rgba(216,216,224,0.6)',lineHeight:1.7,flex:1}}>{product.desc}</div>
-      <div style={{marginTop:20,display:'flex',justifyContent:'flex-end'}}>
-        <div className="carr" style={{fontFamily:"'Inter',sans-serif",fontSize:13,color:MDM_T.red,opacity:0,transform:'translateX(-8px)',transition:'opacity 200ms,transform 200ms'}}>Learn more →</div>
+      <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:17,fontWeight:700,color:'#fff',letterSpacing:'-0.01em',lineHeight:1.25,marginBottom:10}}>{p.name}</div>
+      <div style={{fontFamily:"'JetBrains Mono',monospace",fontSize:9,fontWeight:500,color:T.platDk,letterSpacing:'.06em',marginBottom:14}}>{p.spec}</div>
+      <div style={{fontFamily:"'Inter',sans-serif",fontSize:13,fontWeight:300,color:'rgba(200,200,215,.52)',lineHeight:1.75,flex:1}}>{p.desc}</div>
+      <div ref={pr} style={{marginTop:20}}>
+        <div style={{display:'flex',justifyContent:'space-between',marginBottom:4}}>
+          <div style={{fontFamily:"'Inter',sans-serif",fontSize:8,fontWeight:600,color:T.muted,letterSpacing:'.14em',textTransform:'uppercase'}}>Capability</div>
+          <div style={{fontFamily:"'JetBrains Mono',monospace",fontSize:8,color:T.red}}>{p.lv}%</div>
+        </div>
+        <div className="prog-track"><div className={`prog-fill${on?' on':''}`} style={{'--w':`${p.lv}%`}}/></div>
       </div>
-      <div className="cbar" style={{position:'absolute',bottom:0,left:0,right:0,height:2,background:`linear-gradient(90deg,${MDM_T.red},transparent)`,opacity:0,transition:'opacity 250ms'}} />
+      <div style={{marginTop:16,display:'flex',justifyContent:'flex-end'}}>
+        <div style={{fontFamily:"'Inter',sans-serif",fontSize:12,color:T.red,opacity:hov?1:0,transform:hov?'translateX(0)':'translateX(-10px)',transition:'opacity .2s,transform .22s'}}>Learn more →</div>
+      </div>
+      <div style={{position:'absolute',bottom:0,left:0,right:0,height:2,background:`linear-gradient(90deg,${T.red},${T.redLt},transparent)`,opacity:hov?1:0,transition:'opacity .3s'}}/>
+    </Tilt>
+  );
+}
+
+function Products(){
+  return(
+    <section id="products" style={{background:`linear-gradient(180deg,${T.bg} 0%,${T.s1} 6%,${T.s1} 100%)`,padding:'104px 0',position:'relative',overflow:'hidden'}}>
+      <div style={{position:'absolute',top:'15%',right:'-5%',width:480,height:480,borderRadius:'50%',background:'radial-gradient(circle,rgba(232,0,28,.04) 0%,transparent 70%)',filter:'blur(60px)',pointerEvents:'none'}}/>
+      <div className="line-grid" style={{position:'absolute',inset:0,pointerEvents:'none',opacity:.6}}/>
+      <div className="si" style={{maxWidth:1280,margin:'0 auto',padding:'0 64px',position:'relative',zIndex:1}}>
+        <div className="tc" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:48,marginBottom:60,alignItems:'end'}}>
+          <div><SL style={{marginBottom:18}}>What We Build</SL>
+            <h2 className="reveal" style={{fontFamily:"'Orbitron',sans-serif",fontSize:'clamp(38px,4.5vw,62px)',fontWeight:900,color:'#fff',letterSpacing:'-0.03em',textTransform:'uppercase',lineHeight:.9}}>PRODUCTS</h2>
+          </div>
+          <p className="reveal" style={{fontFamily:"'Inter',sans-serif",fontSize:15,fontWeight:300,color:T.platDk,lineHeight:1.9,alignSelf:'flex-end'}}>Every part leaves with a full CMM inspection report. We don’t ship components we wouldn’t put on our own car.</p>
+        </div>
+        <div className="pg" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16}}>
+          {PRODS.map((p,i)=><PCard key={p.n} p={p} delay={Math.min((i%3)+1,4)}/>)}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─── ENGINEERING ──────────────────────────────────────────────────────────────
+
+const CAPS=[
+  {n:'01',l:'5-Axis CNC Machining',s:'±0.001 mm',d:'Multi-axis precision machining of aluminium, titanium, Inconel and exotic alloys. 48-hour rapid prototype available.',lv:98},
+  {n:'02',l:'CMM Verification',s:'ISO 9001',d:'Every critical dimension verified on our coordinate measuring machine before dispatch. Full inspection report with each batch.',lv:100},
+  {n:'03',l:'FEA & CFD Analysis',s:'Validated',d:'Finite element analysis and computational fluid dynamics run in-house — failures found before the part is ever cut.',lv:90},
+  {n:'04',l:'Carbon Composite',s:'Autoclave',d:'Pre-preg layup cured in our 2m autoclave. Minimum weight, maximum stiffness, zero compromises on surface finish.',lv:85},
+  {n:'05',l:'Surface Treatments',s:'PVD · Hard',d:'Hard anodising, PVD coating, shot peening. Treatment chosen for the specific wear environment of each component.',lv:92},
+  {n:'06',l:'Trackside Race Support',s:'On-Site',d:"Engineering support at selected events. Replacement parts produced track-side when time doesn't allow return to workshop.",lv:80},
+];
+const MATS=['7075-T6 Aluminium','Grade 5 Titanium','17-4PH Stainless','Inconel 718','Pre-preg Carbon','EN36 Steel','Hardox 450','Bespoke on request'];
+
+function Cap({c,idx}){
+  const [on,setOn]=React.useState(false);
+  const ref=React.useRef(null);
+  React.useEffect(()=>{
+    const obs=new IntersectionObserver(([e])=>{if(e.isIntersecting) setOn(true);},{threshold:.2});
+    if(ref.current) obs.observe(ref.current);
+    return()=>obs.disconnect();
+  },[]);
+  return(
+    <div ref={ref} className={`reveal d${(idx%3)+1}`} style={{padding:'24px 0 22px',borderBottom:`1px solid ${T.b}`,display:'grid',gridTemplateColumns:'44px 1fr',gap:14}}>
+      <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:10,fontWeight:700,color:T.subtle,paddingTop:2}}>{c.n}</div>
+      <div>
+        <div style={{display:'flex',alignItems:'baseline',gap:10,marginBottom:7,flexWrap:'wrap'}}>
+          <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:14,fontWeight:700,color:'#fff'}}>{c.l}</div>
+          <span className="br">{c.s}</span>
+        </div>
+        <div style={{fontFamily:"'Inter',sans-serif",fontSize:13,fontWeight:300,color:'rgba(200,200,215,.5)',lineHeight:1.75,marginBottom:8}}>{c.d}</div>
+        <div className="prog-track"><div className={`prog-fill${on?' on':''}`} style={{'--w':`${c.lv}%`,transitionDelay:`${idx*0.08}s`}}/></div>
+      </div>
     </div>
   );
 }
 
-function ProductsSection() {
-  return (
-    <section id="products" style={{background:MDM_T.surfaceDark,padding:'96px 0',position:'relative'}}>
-      <div style={{position:'absolute',top:0,left:0,right:0,height:60,background:`linear-gradient(to bottom,${MDM_T.black},${MDM_T.surfaceDark})`,pointerEvents:'none'}} />
-      <div className="section-inner" style={{maxWidth:1280,margin:'0 auto',padding:'0 64px'}}>
-        <div className="two-col" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:48,marginBottom:56,alignItems:'end'}}>
-          <div>
-            <SectionLabel style={{marginBottom:16}}>What We Build</SectionLabel>
-            <h2 style={{fontFamily:"'Orbitron',sans-serif",fontSize:'clamp(36px,4vw,56px)',fontWeight:900,color:'#fff',letterSpacing:'-0.03em',textTransform:'uppercase',lineHeight:0.92}}>PRODUCTS</h2>
-          </div>
-          <p className="reveal" style={{fontFamily:"'Inter',sans-serif",fontSize:15,fontWeight:300,color:MDM_T.platinumDark,lineHeight:1.85,alignSelf:'flex-end'}}>Every part leaves with a full CMM inspection report. We don't ship components we wouldn't put on our own car.</p>
-        </div>
-        <div className="products-grid" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:16}}>
-          {PRODUCTS.map((p,i)=><ProductCard key={p.n} product={p} delay={Math.min(i+1,4)} />)}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── ENGINEERING ─────────────────────────────────────────────────────────────
-
-const CAPS = [
-  {n:'01',label:'5-Axis CNC Machining',spec:'±0.001 mm',desc:'Multi-axis precision machining of aluminium, titanium, Inconel and exotic alloys. 48-hour rapid prototype available.'},
-  {n:'02',label:'CMM Verification',spec:'ISO 9001',desc:'Every critical dimension verified on our coordinate measuring machine before dispatch. Full inspection report with each batch.'},
-  {n:'03',label:'FEA & CFD Analysis',spec:'Validated',desc:'Finite element analysis and computational fluid dynamics run in-house — failures found before the part is ever cut.'},
-  {n:'04',label:'Carbon Composite',spec:'Autoclave',desc:'Pre-preg layup cured in our 2m autoclave. Minimum weight, maximum stiffness, zero compromises on surface finish.'},
-  {n:'05',label:'Surface Treatments',spec:'PVD · Hard',desc:'Hard anodising, PVD coating, shot peening. Treatment chosen for the specific wear environment of each component.'},
-  {n:'06',label:'Trackside Race Support',spec:'On-Site',desc:"Engineering support at selected events. Replacement parts produced track-side when time doesn't allow return to workshop."},
-];
-
-const MATERIALS = ['7075-T6 Aluminium','Grade 5 Titanium','17-4PH Stainless','Inconel 718','Pre-preg Carbon','EN36 Steel','Hardox 450','Bespoke on request'];
-
-function EngineeringSection() {
-  return (
-    <section id="engineering" style={{background:`linear-gradient(160deg,${MDM_T.black} 0%,${MDM_T.surfaceMid} 100%)`,padding:'96px 0',position:'relative',overflow:'hidden'}}>
-      <div style={{position:'absolute',top:'-10%',left:'55%',width:1,height:'120%',background:'linear-gradient(to bottom,transparent,rgba(184,205,216,0.06),transparent)',transform:'skewX(-6deg)',pointerEvents:'none'}} />
-      <div className="section-inner" style={{maxWidth:1280,margin:'0 auto',padding:'0 64px'}}>
-        <div className="two-col" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:64,marginBottom:72,alignItems:'end'}}>
+function Engineering(){
+  return(
+    <section id="engineering" style={{background:`linear-gradient(158deg,${T.s1} 0%,${T.s2} 40%,${T.s3} 100%)`,padding:'104px 0',position:'relative',overflow:'hidden'}}>
+      <div style={{position:'absolute',top:'-10%',left:'52%',width:1,height:'120%',background:`linear-gradient(to bottom,transparent,rgba(184,205,216,.05),transparent)`,transform:'skewX(-5deg)',pointerEvents:'none'}}/>
+      <div style={{position:'absolute',bottom:'-10%',right:'-5%',width:600,height:600,borderRadius:'50%',background:'radial-gradient(circle,rgba(184,205,216,.05) 0%,transparent 65%)',filter:'blur(60px)',pointerEvents:'none'}}/>
+      <div className="si" style={{maxWidth:1280,margin:'0 auto',padding:'0 64px',position:'relative',zIndex:1}}>
+        <div className="tc" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:64,marginBottom:72,alignItems:'end'}}>
           <div className="reveal-left">
-            <SectionLabel style={{marginBottom:16}}>Capabilities</SectionLabel>
-            <h2 style={{fontFamily:"'Orbitron',sans-serif",fontSize:'clamp(36px,4vw,56px)',fontWeight:900,color:'#fff',letterSpacing:'-0.03em',textTransform:'uppercase',lineHeight:0.92,marginBottom:20}}>ENGINEERING</h2>
-            <RedDivider width={40} style={{marginBottom:20}} />
-            <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:34,fontWeight:800,color:MDM_T.red,letterSpacing:'-0.02em',lineHeight:1}}>±0.001 mm</div>
-            <div style={{fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:500,color:MDM_T.muted,letterSpacing:'0.1em',textTransform:'uppercase',marginTop:6}}>Machining tolerance — standard</div>
+            <SL style={{marginBottom:18}}>Capabilities</SL>
+            <h2 style={{fontFamily:"'Orbitron',sans-serif",fontSize:'clamp(38px,4.5vw,62px)',fontWeight:900,color:'#fff',letterSpacing:'-0.03em',textTransform:'uppercase',lineHeight:.9,marginBottom:24}}>ENGINEERING</h2>
+            <Div w={44} style={{marginBottom:22}}/>
+            <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:40,fontWeight:900,letterSpacing:'-0.04em',lineHeight:1,
+              background:`linear-gradient(135deg,${T.red} 0%,${T.redLt} 55%,#FF6666 100%)`,
+              WebkitBackgroundClip:'text',WebkitTextFillColor:'transparent',backgroundClip:'text',
+              filter:'drop-shadow(0 0 22px rgba(232,0,28,.4))'}}>{`±0.001 mm`}</div>
+            <div style={{fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:500,color:T.muted,letterSpacing:'.1em',textTransform:'uppercase',marginTop:8}}>Machining tolerance — standard</div>
           </div>
-          <p className="reveal" style={{fontFamily:"'Inter',sans-serif",fontSize:15,fontWeight:300,color:MDM_T.platinumDark,lineHeight:1.85,alignSelf:'flex-end'}}>Every process in-house. Shorter lead times, tighter tolerances, no quality escaping between suppliers.</p>
+          <p className="reveal" style={{fontFamily:"'Inter',sans-serif",fontSize:15,fontWeight:300,color:T.platDk,lineHeight:1.9,alignSelf:'flex-end'}}>Every process in-house. Shorter lead times, tighter tolerances, no quality escaping between suppliers.</p>
         </div>
-        <div className="eng-grid two-col" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'0 64px',marginBottom:56}}>
-          {CAPS.map((c,i)=>(
-            <div key={c.n} className={`reveal d${(i%3)+1}`} style={{padding:'26px 0',borderBottom:`1px solid ${MDM_T.border}`,display:'grid',gridTemplateColumns:'40px 1fr',gap:16}}>
-              <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:10,fontWeight:600,color:MDM_T.subtle,paddingTop:3}}>{c.n}</div>
-              <div>
-                <div style={{display:'flex',alignItems:'baseline',gap:10,marginBottom:8,flexWrap:'wrap'}}>
-                  <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:14,fontWeight:700,color:'#fff'}}>{c.label}</div>
-                  <div style={{fontFamily:"'JetBrains Mono',monospace",fontSize:9,color:MDM_T.red,letterSpacing:'0.06em'}}>{c.spec}</div>
-                </div>
-                <div style={{fontFamily:"'Inter',sans-serif",fontSize:13,fontWeight:300,color:'rgba(216,216,224,0.55)',lineHeight:1.75}}>{c.desc}</div>
-              </div>
-            </div>
-          ))}
+        <div className="eg tc" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'0 64px',marginBottom:56}}>
+          {CAPS.map((c,i)=><Cap key={c.n} c={c} idx={i}/>)}
         </div>
         <div className="reveal">
-          <div style={{fontFamily:"'Inter',sans-serif",fontSize:9,fontWeight:600,color:MDM_T.muted,letterSpacing:'0.16em',textTransform:'uppercase',marginBottom:16}}>Materials Stock</div>
+          <div style={{fontFamily:"'Inter',sans-serif",fontSize:9,fontWeight:600,color:T.muted,letterSpacing:'.16em',textTransform:'uppercase',marginBottom:14}}>Materials Stock</div>
           <div style={{display:'flex',flexWrap:'wrap',gap:8}}>
-            {MATERIALS.map(m=><div key={m} style={{fontFamily:"'Inter',sans-serif",fontSize:12,fontWeight:400,color:MDM_T.platinumDark,background:'rgba(184,205,216,0.06)',border:'1px solid rgba(184,205,216,0.12)',borderRadius:4,padding:'7px 16px',letterSpacing:'0.02em'}}>{m}</div>)}
+            {MATS.map(m=><span key={m} className="bp" style={{padding:'7px 16px',fontSize:11,fontFamily:"'Inter',sans-serif",fontWeight:400,letterSpacing:'.02em'}}>{m}</span>)}
           </div>
         </div>
       </div>
@@ -377,59 +515,60 @@ function EngineeringSection() {
   );
 }
 
-// ─── ABOUT ───────────────────────────────────────────────────────────────────
+// ─── ABOUT ────────────────────────────────────────────────────────────────────
 
-const DIFFERENTIATORS = [
-  {title:'Custom From Brief',body:'We work from your drawing, sketch, or written spec. No catalogue — every component is engineered to your chassis, series rules, and performance target.',accent:MDM_T.red},
-  {title:'In-House Only',body:'No outsourced machining. No third-party inspection. From CAD to CMM report, the part never leaves our facility until it meets tolerance.',accent:MDM_T.platinum},
-  {title:'Race Proven',body:'Supplying championship-winning teams across WEC, GT3, IMSA and Formula series. Our parts have been on the podium at Le Mans, Spa, and Daytona.',accent:MDM_T.red},
+const DIFF=[
+  {t:'Custom From Brief',b:'We work from your drawing, sketch, or written spec. No catalogue — every component is engineered to your chassis, series rules, and performance target.',a:T.red},
+  {t:'In-House Only',b:'No outsourced machining. No third-party inspection. From CAD to CMM report, the part never leaves our facility until it meets tolerance.',a:T.plat},
+  {t:'Race Proven',b:'Supplying championship-winning teams across WEC, GT3, IMSA and Formula series. Our parts have been on the podium at Le Mans, Spa, and Daytona.',a:T.red},
 ];
+const STATS=[{v:7,s:'×',l:'Championships'},{v:142,s:'',l:'Race Wins'},{v:20,s:'+',l:'Years Active'},{v:6,s:'',l:'Series in 2026'}];
 
-const STATS = [
-  {value:7,suffix:'×',label:'Championships'},{value:142,suffix:'',label:'Race Wins'},
-  {value:20,suffix:'+',label:'Years Active'},{value:6,suffix:'',label:'Series in 2026'},
-];
-
-function AboutSection() {
-  const statsRef = React.useRef(null);
-  const counted = React.useRef(false);
+function About(){
+  const sr=React.useRef(null);
+  const cd=React.useRef(false);
   React.useEffect(()=>{
-    if (!statsRef.current) return;
-    const obs = new IntersectionObserver(([e])=>{
-      if (e.isIntersecting && !counted.current) {
-        counted.current=true;
-        statsRef.current.querySelectorAll('[data-cu]').forEach(el=>countUp(el,parseInt(el.dataset.cu),el.dataset.sfx||''));
+    if(!sr.current) return;
+    const obs=new IntersectionObserver(([e])=>{
+      if(e.isIntersecting&&!cd.current){
+        cd.current=true;
+        sr.current.querySelectorAll('[data-cu]').forEach(el=>countUp(el,parseInt(el.dataset.cu),el.dataset.sfx||''));
       }
-    },{threshold:0.3});
-    obs.observe(statsRef.current);
-    return ()=>obs.disconnect();
+    },{threshold:.25});
+    obs.observe(sr.current);
+    return()=>obs.disconnect();
   },[]);
-  return (
-    <section id="about" style={{background:MDM_T.surfaceDark,padding:'96px 0',position:'relative',overflow:'hidden'}}>
-      <div style={{position:'absolute',top:0,right:0,width:'40%',height:'100%',background:'radial-gradient(ellipse 80% 60% at 100% 50%,rgba(184,205,216,0.04) 0%,transparent 70%)',pointerEvents:'none'}} />
-      <div className="section-inner" style={{maxWidth:1280,margin:'0 auto',padding:'0 64px'}}>
-        <div style={{marginBottom:64,maxWidth:560}}>
-          <SectionLabel style={{marginBottom:16}}>Why MDM</SectionLabel>
-          <h2 className="reveal" style={{fontFamily:"'Orbitron',sans-serif",fontSize:'clamp(36px,4vw,56px)',fontWeight:900,color:'#fff',letterSpacing:'-0.03em',textTransform:'uppercase',lineHeight:0.92,marginBottom:20}}>BUILT TO<br/>COMPETE.</h2>
-          <RedDivider width={40} style={{marginBottom:20}} />
-          <p className="reveal d1" style={{fontFamily:"'Inter',sans-serif",fontSize:15,fontWeight:300,color:MDM_T.platinumDark,lineHeight:1.85}}>Founded at Silverstone in 2003. Twenty years supplying the world's most demanding racing teams with components that perform when it counts.</p>
+  return(
+    <section id="about" style={{background:`linear-gradient(180deg,${T.s2} 0%,${T.s1} 100%)`,padding:'104px 0',position:'relative',overflow:'hidden'}}>
+      <div style={{position:'absolute',top:0,right:0,width:'45%',height:'100%',background:'radial-gradient(ellipse 80% 60% at 100% 50%,rgba(184,205,216,.04) 0%,transparent 70%)',pointerEvents:'none'}}/>
+      {/* Big watermark */}
+      <div style={{position:'absolute',right:'-2%',top:'5%',fontFamily:"'Orbitron',sans-serif",fontSize:'clamp(120px,18vw,240px)',fontWeight:900,color:'rgba(255,255,255,.018)',letterSpacing:'-0.06em',pointerEvents:'none',userSelect:'none',lineHeight:1}}>MDM</div>
+      <div className="si" style={{maxWidth:1280,margin:'0 auto',padding:'0 64px',position:'relative',zIndex:1}}>
+        <div style={{marginBottom:60,maxWidth:600}}>
+          <SL style={{marginBottom:18}}>Why MDM</SL>
+          <h2 className="reveal" style={{fontFamily:"'Orbitron',sans-serif",fontSize:'clamp(38px,4.5vw,62px)',fontWeight:900,color:'#fff',letterSpacing:'-0.03em',textTransform:'uppercase',lineHeight:.9,marginBottom:22}}>BUILT TO<br/>COMPETE.</h2>
+          <Div w={44} style={{marginBottom:20}}/>
+          <p className="reveal d1" style={{fontFamily:"'Inter',sans-serif",fontSize:15,fontWeight:300,color:T.platDk,lineHeight:1.9}}>Founded at Silverstone in 2003. Twenty years supplying the world’s most demanding racing teams with components that perform when it counts.</p>
         </div>
-        <div className="three-col" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:2,marginBottom:64,background:MDM_T.border,border:`1px solid ${MDM_T.border}`,borderRadius:8,overflow:'hidden'}}>
-          {DIFFERENTIATORS.map((d,i)=>(
-            <div key={d.title} className={`reveal d${i+1}`} style={{background:MDM_T.surfaceDark,padding:'36px 32px',transition:'background 200ms'}}
-              onMouseEnter={e=>{e.currentTarget.style.background=MDM_T.surfaceMid;}}
-              onMouseLeave={e=>{e.currentTarget.style.background=MDM_T.surfaceDark;}}>
-              <div style={{width:32,height:2,background:d.accent,marginBottom:20}} />
-              <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:15,fontWeight:700,color:'#fff',letterSpacing:'-0.01em',marginBottom:14,lineHeight:1.3}}>{d.title}</div>
-              <div style={{fontFamily:"'Inter',sans-serif",fontSize:13,fontWeight:300,color:'rgba(216,216,224,0.6)',lineHeight:1.75}}>{d.body}</div>
+        <div className="thr" style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:2,marginBottom:56,borderRadius:10,overflow:'hidden'}}>
+          {DIFF.map((d,i)=>(
+            <div key={d.t} className={`reveal d${i+1}`} style={{padding:'36px 32px',transition:'background .25s',cursor:'default',
+              background:T.s1,borderTop:`2px solid ${d.a}`,position:'relative',overflow:'hidden'}}
+              onMouseEnter={e=>{e.currentTarget.style.background=T.s2;}}
+              onMouseLeave={e=>{e.currentTarget.style.background=T.s1;}}>
+              <div style={{position:'absolute',top:0,left:0,right:0,height:1,background:`linear-gradient(90deg,${d.a},transparent)`,boxShadow:`0 0 14px ${d.a}`,opacity:.85}}/>
+              <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:14,fontWeight:700,color:'#fff',letterSpacing:'-0.01em',marginBottom:14,lineHeight:1.3}}>{d.t}</div>
+              <div style={{fontFamily:"'Inter',sans-serif",fontSize:13,fontWeight:300,color:'rgba(200,200,215,.55)',lineHeight:1.75}}>{d.b}</div>
             </div>
           ))}
         </div>
-        <div ref={statsRef} className="four-col" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',background:'rgba(14,14,24,0.6)',backdropFilter:'blur(20px)',WebkitBackdropFilter:'blur(20px)',border:`1px solid ${MDM_T.border}`,borderRadius:8,overflow:'hidden'}}>
+        <div ref={sr} className="foc gb-plat blur24" style={{display:'grid',gridTemplateColumns:'repeat(4,1fr)',borderRadius:10,overflow:'hidden'}}>
           {STATS.map((s,i)=>(
-            <div key={s.label} style={{padding:'28px 32px',borderRight:i<3?`1px solid ${MDM_T.border}`:'none'}}>
-              <div data-cu={s.value} data-sfx={s.suffix} style={{fontFamily:"'Orbitron',sans-serif",fontSize:36,fontWeight:800,color:i===0?MDM_T.red:'#fff',letterSpacing:'-0.03em',lineHeight:1,marginBottom:6}}>0{s.suffix}</div>
-              <div style={{fontFamily:"'Inter',sans-serif",fontSize:10,fontWeight:500,color:MDM_T.muted,letterSpacing:'0.1em',textTransform:'uppercase'}}>{s.label}</div>
+            <div key={s.l} style={{padding:'28px 32px',borderRight:i<3?`1px solid ${T.b}`:'none'}}>
+              <div data-cu={s.v} data-sfx={s.s} style={{fontFamily:"'Orbitron',sans-serif",fontSize:38,fontWeight:900,
+                color:i===0?T.red:'#fff',letterSpacing:'-0.04em',lineHeight:1,marginBottom:6,
+                textShadow:i===0?`0 0 32px rgba(232,0,28,.45)`:'none'}}>0{s.s}</div>
+              <div style={{fontFamily:"'Inter',sans-serif",fontSize:10,fontWeight:500,color:T.muted,letterSpacing:'.1em',textTransform:'uppercase'}}>{s.l}</div>
             </div>
           ))}
         </div>
@@ -438,64 +577,68 @@ function AboutSection() {
   );
 }
 
-// ─── CONTACT ─────────────────────────────────────────────────────────────────
+// ─── CONTACT ──────────────────────────────────────────────────────────────────
 
-const CATEGORIES = ['Suspension Geometry','Drivetrain Components','Braking Systems','Aerodynamic Parts','Powertrain Accessories','One-Off Engineering'];
+const CATS=['Suspension Geometry','Drivetrain Components','Braking Systems','Aerodynamic Parts','Powertrain Accessories','One-Off Engineering'];
 
-function ContactSection() {
-  const [form,setForm] = React.useState({name:'',org:'',email:'',category:CATEGORIES[0],series:'',message:''});
-  const [sent,setSent] = React.useState(false);
-  const update=(k,v)=>setForm(f=>({...f,[k]:v}));
-  const base={width:'100%',background:'transparent',border:'none',borderBottom:'1px solid rgba(255,255,255,0.12)',color:'#fff',fontFamily:"'Inter',sans-serif",fontSize:14,fontWeight:300,padding:'10px 0',outline:'none',transition:'border-color 200ms',borderRadius:0};
-  const lbl={fontFamily:"'Inter',sans-serif",fontSize:9,fontWeight:600,color:MDM_T.muted,letterSpacing:'0.16em',textTransform:'uppercase',display:'block',marginBottom:6};
+function Contact(){
+  const [form,setForm]=React.useState({name:'',org:'',email:'',cat:CATS[0],series:'',msg:''});
+  const [sent,setSent]=React.useState(false);
+  const up=(k,v)=>setForm(f=>({...f,[k]:v}));
+  const base={width:'100%',background:'transparent',border:'none',borderBottom:'1px solid rgba(255,255,255,.1)',color:'#fff',fontFamily:"'Inter',sans-serif",fontSize:14,fontWeight:300,padding:'10px 0',outline:'none',transition:'border-color .2s',borderRadius:0};
+  const lbl={fontFamily:"'Inter',sans-serif",fontSize:9,fontWeight:600,color:T.muted,letterSpacing:'.16em',textTransform:'uppercase',display:'block',marginBottom:6};
   const F=({label,children,style:s})=><div style={s}><label style={lbl}>{label}</label>{children}</div>;
-  const fi=e=>{e.currentTarget.style.borderBottomColor=MDM_T.red;};
-  const fb=e=>{e.currentTarget.style.borderBottomColor='rgba(255,255,255,0.12)';};
-  return (
-    <section id="contact" style={{background:`radial-gradient(ellipse 60% 70% at 100% 100%,rgba(232,0,28,0.08) 0%,transparent 55%),radial-gradient(ellipse 50% 50% at 0% 0%,rgba(184,205,216,0.05) 0%,transparent 50%),${MDM_T.black}`,padding:'96px 0',position:'relative',overflow:'hidden'}}>
-      <div style={{position:'absolute',inset:0,backgroundImage:'radial-gradient(rgba(255,255,255,0.025) 1px,transparent 1px)',backgroundSize:'40px 40px',pointerEvents:'none'}} />
-      <div className="section-inner" style={{maxWidth:1280,margin:'0 auto',padding:'0 64px',position:'relative',zIndex:1}}>
-        <div className="contact-grid two-col" style={{display:'grid',gridTemplateColumns:'1fr 1.1fr',gap:80,alignItems:'start'}}>
+  const fi=e=>{e.currentTarget.style.borderBottomColor=T.red;};
+  const fb=e=>{e.currentTarget.style.borderBottomColor='rgba(255,255,255,.1)';};
+  return(
+    <section id="contact" style={{background:`radial-gradient(ellipse 70% 80% at 100% 100%,rgba(232,0,28,.07) 0%,transparent 50%),radial-gradient(ellipse 60% 60% at 0% 0%,rgba(184,205,216,.04) 0%,transparent 50%),${T.bg}`,padding:'104px 0',position:'relative',overflow:'hidden'}}>
+      <div className="dot-grid" style={{position:'absolute',inset:0,pointerEvents:'none'}}/>
+      <div style={{position:'absolute',inset:0,background:'radial-gradient(ellipse 55% 55% at 50% 100%,rgba(232,0,28,.05) 0%,transparent 60%)',pointerEvents:'none'}}/>
+      <div className="si" style={{maxWidth:1280,margin:'0 auto',padding:'0 64px',position:'relative',zIndex:1}}>
+        <div className="cg tc" style={{display:'grid',gridTemplateColumns:'1fr 1.1fr',gap:80,alignItems:'start'}}>
           <div className="reveal-left">
-            <SectionLabel style={{marginBottom:16}}>Enquiries</SectionLabel>
-            <h2 style={{fontFamily:"'Orbitron',sans-serif",fontSize:'clamp(32px,3.5vw,52px)',fontWeight:900,color:'#fff',letterSpacing:'-0.03em',textTransform:'uppercase',lineHeight:0.92,marginBottom:20}}>REQUEST<br/>A PART.</h2>
-            <RedDivider width={40} style={{marginBottom:24}} />
-            <p style={{fontFamily:"'Inter',sans-serif",fontSize:14,fontWeight:300,color:MDM_T.platinumDark,lineHeight:1.85,marginBottom:44,maxWidth:380}}>Send a brief — drawing, sketch, or written spec. Our engineering team responds within one working day with feasibility and indicative lead time.</p>
+            <SL style={{marginBottom:18}}>Enquiries</SL>
+            <h2 style={{fontFamily:"'Orbitron',sans-serif",fontSize:'clamp(34px,3.5vw,56px)',fontWeight:900,color:'#fff',letterSpacing:'-0.03em',textTransform:'uppercase',lineHeight:.9,marginBottom:22}}>REQUEST<br/>A PART.</h2>
+            <Div w={44} style={{marginBottom:28}}/>
+            <p style={{fontFamily:"'Inter',sans-serif",fontSize:14,fontWeight:300,color:T.platDk,lineHeight:1.9,marginBottom:48,maxWidth:380}}>Send a brief — drawing, sketch, or written spec. Our engineering team responds within one working day with feasibility and indicative lead time.</p>
             <div style={{display:'flex',flexDirection:'column',gap:24}}>
               {[{l:'Email',v:'engineering@mdmmotorsports.com'},{l:'Address',v:'Silverstone Technology Park, NN12 8TN, UK'},{l:'Hours',v:'Mon – Fri · 08:00 – 18:00 GMT'}].map(({l,v})=>(
                 <div key={l}>
-                  <div style={{fontFamily:"'Inter',sans-serif",fontSize:9,fontWeight:600,color:MDM_T.muted,letterSpacing:'0.14em',textTransform:'uppercase',marginBottom:5}}>{l}</div>
-                  <div style={{fontFamily:"'Inter',sans-serif",fontSize:13,color:MDM_T.offWhite,fontWeight:300,lineHeight:1.5}}>{v}</div>
+                  <div style={{fontFamily:"'Inter',sans-serif",fontSize:9,fontWeight:600,color:T.muted,letterSpacing:'.14em',textTransform:'uppercase',marginBottom:5}}>{l}</div>
+                  <div style={{fontFamily:"'Inter',sans-serif",fontSize:13,color:T.off,fontWeight:300,lineHeight:1.5}}>{v}</div>
                 </div>
               ))}
             </div>
           </div>
-          <div className="reveal" style={{background:'rgba(14,14,24,0.65)',backdropFilter:'blur(28px)',WebkitBackdropFilter:'blur(28px)',border:'1px solid rgba(255,255,255,0.09)',borderTop:`2px solid ${MDM_T.red}`,borderRadius:8,padding:'40px 36px'}}>
+          <div className="reveal gb-red blur32" style={{borderRadius:10,padding:'42px 38px',position:'relative',overflow:'hidden'}}>
+            <div style={{position:'absolute',top:0,left:0,right:0,height:2,background:`linear-gradient(90deg,${T.red},${T.redLt},transparent)`,boxShadow:`0 0 14px rgba(232,0,28,.55)`}}/>
             {sent?(
-              <div style={{textAlign:'center',padding:'40px 0'}}>
-                <div style={{width:48,height:48,borderRadius:'50%',background:'rgba(232,0,28,0.12)',border:`1px solid ${MDM_T.red}`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 20px'}}>
-                  <div style={{color:MDM_T.red,fontSize:22}}>✓</div>
+              <div style={{textAlign:'center',padding:'48px 0'}}>
+                <div style={{width:56,height:56,borderRadius:'50%',background:'rgba(232,0,28,.1)',border:`1.5px solid ${T.red}`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 20px',boxShadow:`0 0 28px rgba(232,0,28,.35),0 0 56px rgba(232,0,28,.12)`}}>
+                  <div style={{color:T.red,fontSize:24,fontWeight:300}}>✓</div>
                 </div>
-                <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:16,fontWeight:700,color:'#fff',marginBottom:10}}>ENQUIRY SENT</div>
-                <div style={{fontFamily:"'Inter',sans-serif",fontSize:13,color:MDM_T.muted}}>We'll respond within one working day.</div>
+                <div style={{fontFamily:"'Orbitron',sans-serif",fontSize:16,fontWeight:700,color:'#fff',marginBottom:10,letterSpacing:'.02em'}}>ENQUIRY SENT</div>
+                <div style={{fontFamily:"'Inter',sans-serif",fontSize:13,color:T.muted}}>We’ll respond within one working day.</div>
               </div>
             ):(
               <div style={{display:'flex',flexDirection:'column',gap:22}}>
                 <div style={{display:'flex',gap:20,flexWrap:'wrap'}}>
-                  <F label="Name" style={{flex:1,minWidth:120}}><input style={base} placeholder="Your name" value={form.name} onChange={e=>update('name',e.target.value)} onFocus={fi} onBlur={fb}/></F>
-                  <F label="Organisation" style={{flex:1,minWidth:120}}><input style={base} placeholder="Team or company" value={form.org} onChange={e=>update('org',e.target.value)} onFocus={fi} onBlur={fb}/></F>
+                  <F label="Name" style={{flex:1,minWidth:120}}><input style={base} placeholder="Your name" value={form.name} onChange={e=>up('name',e.target.value)} onFocus={fi} onBlur={fb}/></F>
+                  <F label="Organisation" style={{flex:1,minWidth:120}}><input style={base} placeholder="Team or company" value={form.org} onChange={e=>up('org',e.target.value)} onFocus={fi} onBlur={fb}/></F>
                 </div>
-                <F label="Email"><input style={base} type="email" placeholder="you@example.com" value={form.email} onChange={e=>update('email',e.target.value)} onFocus={fi} onBlur={fb}/></F>
-                <F label="Category">
-                  <select style={{...base,cursor:'pointer',appearance:'none',WebkitAppearance:'none'}} value={form.category} onChange={e=>update('category',e.target.value)} onFocus={fi} onBlur={fb}>
-                    {CATEGORIES.map(c=><option key={c} style={{background:MDM_T.surfaceDark}}>{c}</option>)}
-                  </select>
-                </F>
-                <F label="Racing Series"><input style={base} placeholder="WEC, GT3, IMSA, F4, etc." value={form.series} onChange={e=>update('series',e.target.value)} onFocus={fi} onBlur={fb}/></F>
-                <F label="Requirements"><textarea style={{...base,height:90,resize:'none'}} placeholder="Material, load cases, target weight, deadline…" value={form.message} onChange={e=>update('message',e.target.value)} onFocus={fi} onBlur={fb}/></F>
-                <button onClick={()=>setSent(true)} style={{fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:600,letterSpacing:'0.12em',textTransform:'uppercase',background:MDM_T.red,color:'#fff',border:'none',borderRadius:3,padding:'13px 28px',cursor:'pointer',marginTop:4,transition:'background 150ms,box-shadow 200ms'}}
-                  onMouseEnter={e=>{e.currentTarget.style.background=MDM_T.redLight;e.currentTarget.style.boxShadow='0 0 28px rgba(232,0,28,0.45)';}}
-                  onMouseLeave={e=>{e.currentTarget.style.background=MDM_T.red;e.currentTarget.style.boxShadow='none';}}>Send Enquiry</button>
+                <F label="Email"><input style={base} type="email" placeholder="you@example.com" value={form.email} onChange={e=>up('email',e.target.value)} onFocus={fi} onBlur={fb}/></F>
+                <F label="Category"><select style={{...base,cursor:'pointer',appearance:'none',WebkitAppearance:'none'}} value={form.cat} onChange={e=>up('cat',e.target.value)} onFocus={fi} onBlur={fb}>{CATS.map(c=><option key={c}>{c}</option>)}</select></F>
+                <F label="Racing Series"><input style={base} placeholder="WEC, GT3, IMSA, F4, etc." value={form.series} onChange={e=>up('series',e.target.value)} onFocus={fi} onBlur={fb}/></F>
+                <F label="Requirements"><textarea style={{...base,height:88,resize:'none'}} placeholder="Material, load cases, target weight, deadline…" value={form.msg} onChange={e=>up('msg',e.target.value)} onFocus={fi} onBlur={fb}/></F>
+                <button onClick={()=>setSent(true)}
+                  style={{fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:600,letterSpacing:'.12em',textTransform:'uppercase',
+                    background:`linear-gradient(135deg,${T.red},${T.redLt})`,color:'#fff',border:'none',borderRadius:3,
+                    padding:'14px 28px',cursor:'pointer',marginTop:4,transition:'box-shadow .2s,transform .15s',
+                    boxShadow:'0 4px 20px rgba(232,0,28,.28)'}}
+                  onMouseEnter={e=>{e.currentTarget.style.boxShadow='0 0 36px rgba(232,0,28,.65),0 8px 32px rgba(232,0,28,.4)';e.currentTarget.style.transform='translateY(-1px)';}}
+                  onMouseLeave={e=>{e.currentTarget.style.boxShadow='0 4px 20px rgba(232,0,28,.28)';e.currentTarget.style.transform='';}}>
+                  Send Enquiry
+                </button>
               </div>
             )}
           </div>
@@ -505,40 +648,49 @@ function ContactSection() {
   );
 }
 
-// ─── FOOTER ──────────────────────────────────────────────────────────────────
+// ─── FOOTER ───────────────────────────────────────────────────────────────────
 
-function FooterSection() {
-  const go=(id)=>{const el=document.getElementById(id);if(el)window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-64,behavior:'smooth'});};
+function Footer(){
+  const go=(id)=>{const el=document.getElementById(id);if(el) window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-64,behavior:'smooth'});};
   const cols=[
-    {heading:'Products',links:['Suspension Geometry','Drivetrain Components','Braking Systems','Aerodynamic Parts','Powertrain Accessories','One-Off Engineering']},
-    {heading:'Company',links:['Engineering','About','Quality Policy','Careers']},
-    {heading:'Contact',links:['engineering@mdmmotorsports.com','+44 20 7946 0321','Mon – Fri · 08:00 – 18:00 GMT']},
+    {h:'Products',ls:['Suspension Geometry','Drivetrain Components','Braking Systems','Aerodynamic Parts','Powertrain Accessories','One-Off Engineering']},
+    {h:'Company',ls:['Engineering','About','Quality Policy','Careers']},
+    {h:'Contact',ls:['engineering@mdmmotorsports.com','+44 20 7946 0321','Mon – Fri · 08:00 – 18:00 GMT']},
   ];
-  return (
-    <footer style={{background:MDM_T.surfaceDark,borderTop:'1px solid rgba(255,255,255,0.06)',padding:'64px 0 28px'}}>
-      <div className="section-inner" style={{maxWidth:1280,margin:'0 auto',padding:'0 64px'}}>
-        <div className="footer-grid" style={{display:'grid',gridTemplateColumns:'2fr 1fr 1fr 1fr',gap:48,marginBottom:52}}>
+  return(
+    <footer style={{background:T.s1,borderTop:`1px solid ${T.b}`,padding:'64px 0 28px',position:'relative'}}>
+      <div style={{position:'absolute',top:0,left:0,right:0,height:1,background:`linear-gradient(90deg,transparent,rgba(232,0,28,.3),transparent)`,boxShadow:'0 0 14px rgba(232,0,28,.18)'}}/>
+      <div className="si" style={{maxWidth:1280,margin:'0 auto',padding:'0 64px'}}>
+        <div className="fg" style={{display:'grid',gridTemplateColumns:'2fr 1fr 1fr 1fr',gap:48,marginBottom:52}}>
           <div>
-            <div style={{marginBottom:20,cursor:'pointer'}} onClick={()=>go('hero')}><Logo height={38}/></div>
-            <RedDivider width={36} style={{marginBottom:16}} />
-            <p style={{fontFamily:"'Inter',sans-serif",fontSize:12,fontWeight:300,color:'rgba(255,255,255,0.28)',lineHeight:1.75,maxWidth:220}}>Precision motorsport engineering.<br/>Silverstone, UK. Est. 2003.</p>
+            <div style={{marginBottom:20,cursor:'pointer'}} onClick={()=>go('hero')}><Logo h={36}/></div>
+            <Div w={36} style={{marginBottom:16}}/>
+            <p style={{fontFamily:"'Inter',sans-serif",fontSize:12,fontWeight:300,color:'rgba(255,255,255,.24)',lineHeight:1.75,maxWidth:220}}>Precision motorsport engineering.<br/>Silverstone, UK. Est. 2003.</p>
             <div style={{display:'flex',gap:8,marginTop:20,flexWrap:'wrap'}}>
-              {['ISO 9001','FIA Supplier','IATF 16949'].map(c=><div key={c} style={{fontFamily:"'JetBrains Mono',monospace",fontSize:8,fontWeight:500,color:MDM_T.platinumDark,letterSpacing:'0.06em',background:'rgba(184,205,216,0.06)',border:'1px solid rgba(184,205,216,0.1)',borderRadius:3,padding:'4px 10px'}}>{c}</div>)}
+              {['ISO 9001','FIA Supplier','IATF 16949'].map(c=><span key={c} className="bp" style={{fontSize:7.5}}>{c}</span>)}
             </div>
           </div>
           {cols.map(col=>(
-            <div key={col.heading}>
-              <div style={{fontFamily:"'Inter',sans-serif",fontSize:9,fontWeight:600,color:MDM_T.muted,letterSpacing:'0.16em',textTransform:'uppercase',marginBottom:16}}>{col.heading}</div>
+            <div key={col.h}>
+              <div style={{fontFamily:"'Inter',sans-serif",fontSize:9,fontWeight:600,color:T.muted,letterSpacing:'.16em',textTransform:'uppercase',marginBottom:16}}>{col.h}</div>
               <div style={{display:'flex',flexDirection:'column',gap:10}}>
-                {col.links.map(l=><div key={l} style={{fontFamily:"'Inter',sans-serif",fontSize:12,fontWeight:300,color:'rgba(255,255,255,0.28)',lineHeight:1.5,cursor:'pointer',transition:'color 150ms'}} onMouseEnter={e=>{e.currentTarget.style.color=MDM_T.platinum;}} onMouseLeave={e=>{e.currentTarget.style.color='rgba(255,255,255,0.28)';}}>{l}</div>)}
+                {col.ls.map(l=>(
+                  <div key={l} style={{fontFamily:"'Inter',sans-serif",fontSize:12,fontWeight:300,color:'rgba(255,255,255,.24)',lineHeight:1.5,cursor:'pointer',transition:'color .15s'}}
+                    onMouseEnter={e=>{e.currentTarget.style.color=T.plat;}}
+                    onMouseLeave={e=>{e.currentTarget.style.color='rgba(255,255,255,.24)';}}>{l}</div>
+                ))}
               </div>
             </div>
           ))}
         </div>
-        <div style={{borderTop:'1px solid rgba(255,255,255,0.06)',paddingTop:20,display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:12}}>
-          <div style={{fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:300,color:'rgba(255,255,255,0.18)'}}>© 2026 MDM Motorsports Ltd. All rights reserved.</div>
+        <div style={{borderTop:`1px solid ${T.b}`,paddingTop:20,display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:12}}>
+          <div style={{fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:300,color:'rgba(255,255,255,.16)'}}>© 2026 MDM Motorsports Ltd. All rights reserved.</div>
           <div style={{display:'flex',gap:24,flexWrap:'wrap'}}>
-            {['Privacy Policy','Terms of Service','Quality Policy'].map(l=><div key={l} style={{fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:300,color:'rgba(255,255,255,0.18)',cursor:'pointer',transition:'color 150ms'}} onMouseEnter={e=>{e.currentTarget.style.color=MDM_T.muted;}} onMouseLeave={e=>{e.currentTarget.style.color='rgba(255,255,255,0.18)';}}>{l}</div>)}
+            {['Privacy Policy','Terms of Service','Quality Policy'].map(l=>(
+              <div key={l} style={{fontFamily:"'Inter',sans-serif",fontSize:11,fontWeight:300,color:'rgba(255,255,255,.16)',cursor:'pointer',transition:'color .15s'}}
+                onMouseEnter={e=>{e.currentTarget.style.color=T.muted;}}
+                onMouseLeave={e=>{e.currentTarget.style.color='rgba(255,255,255,.16)';}}>{l}</div>
+            ))}
           </div>
         </div>
       </div>
@@ -546,41 +698,40 @@ function FooterSection() {
   );
 }
 
-// ─── APP ─────────────────────────────────────────────────────────────────────
+// ─── APP ──────────────────────────────────────────────────────────────────────
 
-function App() {
-  const [activeSection, setActiveSection] = React.useState('hero');
+function App(){
+  const [active,setActive]=React.useState('hero');
   React.useEffect(()=>{
-    const sections=['hero','products','engineering','about','contact'];
+    const secs=['hero','products','engineering','about','contact'];
     const fn=()=>{
-      const offset=120;
-      for (let i=sections.length-1;i>=0;i--){
-        const el=document.getElementById(sections[i]);
-        if(el&&el.getBoundingClientRect().top<=offset){setActiveSection(sections[i]);return;}
+      for(let i=secs.length-1;i>=0;i--){
+        const el=document.getElementById(secs[i]);
+        if(el&&el.getBoundingClientRect().top<=120){setActive(secs[i]);return;}
       }
-      setActiveSection('hero');
+      setActive('hero');
     };
     window.addEventListener('scroll',fn,{passive:true});
-    return ()=>window.removeEventListener('scroll',fn);
+    return()=>window.removeEventListener('scroll',fn);
   },[]);
   React.useEffect(()=>{
-    const obs=new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-    },{threshold:0.06});
-    const timer=setTimeout(()=>{
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible');});
+    },{threshold:.06});
+    const t=setTimeout(()=>{
       document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.observe(el));
-    },120);
-    return ()=>{clearTimeout(timer);obs.disconnect();};
+    },100);
+    return()=>{clearTimeout(t);obs.disconnect();};
   },[]);
-  return (
-    <div style={{minHeight:'100vh',background:'#0B0B10'}}>
-      <Header activeSection={activeSection}/>
-      <HeroSection/>
-      <ProductsSection/>
-      <EngineeringSection/>
-      <AboutSection/>
-      <ContactSection/>
-      <FooterSection/>
+  return(
+    <div style={{minHeight:'100vh',background:T.bg}}>
+      <Header active={active}/>
+      <Hero/>
+      <Products/>
+      <Engineering/>
+      <About/>
+      <Contact/>
+      <Footer/>
     </div>
   );
 }
