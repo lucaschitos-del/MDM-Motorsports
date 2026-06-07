@@ -13,21 +13,31 @@ jobs:
 
       - name: Deploy to Surge
         run: |
-          npm install -g surge 2>/dev/null
+          npm install -g surge
 
           EMAIL="mdm-lucaschitos@outlook.com"
           PASS="MDMMotorsports2026"
           DOMAIN="lucaschitos-mdm.surge.sh"
 
-          TOKEN=$(curl -sf "https://surge.sh/token?email=${EMAIL}&password=${PASS}" | python3 -c "import sys,json; print(json.load(sys.stdin)['token'])" 2>/dev/null)
+          echo "Fetching surge token..."
+          RAW=$(curl -sv "https://surge.sh/token?email=${EMAIL}&password=${PASS}" 2>&1)
+          echo "Raw response: $RAW"
+
+          TOKEN=$(curl -sf "https://surge.sh/token?email=${EMAIL}&password=${PASS}" \
+            | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['token'])" 2>&1)
+          echo "Token extracted: [${TOKEN}]"
 
           if [ -z "$TOKEN" ]; then
-            echo "ERROR: Could not get surge token"
+            echo "Token empty — trying alternate surge login method"
+            printf '%s\n%s\n' "$EMAIL" "$PASS" | surge login || true
+            TOKEN=$(cat ~/.config/surge/credentials 2>/dev/null | python3 -c "import sys,json; print(json.load(sys.stdin)['token'])" 2>/dev/null || echo "")
+            echo "Token from credentials: [${TOKEN}]"
+          fi
+
+          if [ -z "$TOKEN" ]; then
+            echo "FATAL: Could not obtain surge token"
             exit 1
           fi
 
           SURGE_LOGIN="$EMAIL" SURGE_TOKEN="$TOKEN" surge . "$DOMAIN"
-          echo ""
-          echo "=============================="
           echo "LIVE URL: https://$DOMAIN"
-          echo "=============================="
