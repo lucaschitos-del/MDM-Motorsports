@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MDM Motorsports — Precision Parts Engineering</title>
+  <meta name="description" content="Custom-engineered components for competitive motorsport. From CAD brief to race-ready part — at tolerances measured in microns.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --mdm-black:          #0B0B10;
+      --mdm-surface-dark:   #14141E;
+      --mdm-surface-mid:    #1E1E2E;
+      --mdm-surface-light:  #28283C;
+      --mdm-red:            #E8001C;
+      --mdm-red-dark:       #B8001A;
+      --mdm-red-light:      #FF1A33;
+      --mdm-platinum:       #B8CDD8;
+      --mdm-platinum-dark:  #7A9AAA;
+      --mdm-platinum-light: #D8E8EE;
+      --mdm-white:          #FFFFFF;
+      --mdm-off-white:      #D8D8E0;
+      --mdm-muted:          #5A5A72;
+      --mdm-subtle:         #3A3A52;
+      --mdm-border:         rgba(255,255,255,0.08);
+      --mdm-border-strong:  rgba(255,255,255,0.16);
+      --font-display: 'Orbitron', sans-serif;
+      --font-body:    'Inter', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--mdm-black);
+      color: #fff;
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    #root { min-height: 100vh; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--mdm-black); }
+    ::-webkit-scrollbar-thumb { background: rgba(232,0,28,0.35); border-radius: 2px; }
+
+    /* Scroll reveal */
+    .reveal       { opacity: 0; transform: translateY(26px); transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-left  { opacity: 0; transform: translateX(-26px); transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1); }
+    .reveal-left.visible { opacity: 1; transform: none; }
+    .reveal-right { opacity: 0; transform: translateX(26px); transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1); }
+    .reveal-right.visible { opacity: 1; transform: none; }
+
+    .d1 { transition-delay: 0.10s; }
+    .d2 { transition-delay: 0.20s; }
+    .d3 { transition-delay: 0.30s; }
+    .d4 { transition-delay: 0.40s; }
+
+    input::placeholder, textarea::placeholder { color: rgba(90,90,114,0.7); }
+    input, textarea, select { color: #fff; }
+    select option { background: #14141E; color: #fff; }
+
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hero-padding { padding: 100px 24px 40px !important; }
+      .section-padding { padding: 0 24px !important; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .products-grid { grid-template-columns: 1fr !important; }
+      .two-col { grid-template-columns: 1fr !important; }
+      .three-col { grid-template-columns: 1fr !important; }
+      .four-col { grid-template-columns: repeat(2, 1fr) !important; }
+      .footer-grid { grid-template-columns: 1fr 1fr !important; }
+    }
+
+    @media (max-width: 600px) {
+      .stats-grid { grid-template-columns: 1fr 1fr !important; }
+      .four-col { grid-template-columns: 1fr 1fr !important; }
+    }
+  </style>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="components/Shared.jsx"></script>
+<script type="text/babel" src="components/Header.jsx"></script>
+<script type="text/babel" src="components/Hero.jsx"></script>
+<script type="text/babel" src="components/Products.jsx"></script>
+<script type="text/babel" src="components/Engineering.jsx"></script>
+<script type="text/babel" src="components/About.jsx"></script>
+<script type="text/babel" src="components/Contact.jsx"></script>
+<script type="text/babel" src="components/Footer.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
+</body>
+</html>
